@@ -47,7 +47,7 @@ namespace MasavUI.Pages
 
             var monthList = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
             cmbMonthly.ItemsSource = monthList;
-            cmbMonthly.SelectedIndex = 0;
+            cmbMonthly.SelectedItem = DateTime.Now.Month;
 
             var dayInMonthList = new List<int>();
             dayInMonthList.AddRange(Enumerable.Range(1, 31).ToArray());
@@ -55,7 +55,6 @@ namespace MasavUI.Pages
             cmbDayInMonth.SelectedIndex = 0;
 
             var customersList = new List<Customer>();
-            //  customersList.Add(new Customer { Name = "כל הלקוחות", Id = 0 });
             customersList.AddRange(DB.GetCustomersList());
             cmbCustomers.DisplayMemberPath = "Name";
             cmbCustomers.SelectedValuePath = "Id";
@@ -151,6 +150,11 @@ namespace MasavUI.Pages
         {
             OverrideFile = true;
             btnCreateReport_Click(sender, e);
+        }
+
+        private void CmbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            cmbDayInMonth.SelectedItem = ((Customer)cmbCustomers.SelectedItem).PaymentDate1;
         }
     }
 }

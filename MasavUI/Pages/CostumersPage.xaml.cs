@@ -157,6 +157,9 @@ namespace MasavUI.Pages
                 Title = " יצירת מוסד חדש"
             };
 
+            dialog.cmbActivity.SelectedValue = 1; //פעיל
+            dialog.dpCreatedDate.SelectedDate = DateTime.Now;
+
             Button customSaveButton = new Button() { Content = "שמירה", Margin = new Thickness(5) };
             customSaveButton.Click += (ss, ee) =>
             {

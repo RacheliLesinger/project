@@ -43,7 +43,7 @@
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3">
 						<TextBlock Text="מוסד" Margin="10" DockPanel.Dock="Left" />
-                        <ComboBox Name="cmbCustomers" Margin="0,10,50,10" DockPanel.Dock="Left" >
+                        <ComboBox Name="cmbCustomers" Margin="0,10,50,10" DockPanel.Dock="Left" SelectionChanged="CmbCustomers_SelectionChanged">
                         </ComboBox >
                     </StackPanel>
 					<Button Name="btnCreate" Content="צור דוחות"  Margin="10" DockPanel.Dock="Right" Grid.Column="0" Grid.Row="4" Click="btnCreate_Click"  Background="#FFDFE0EA"/>

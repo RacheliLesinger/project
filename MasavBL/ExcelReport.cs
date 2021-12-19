@@ -40,8 +40,8 @@ namespace MasavBL
                 }
                 stream.Position = 0;
                 string excelName = $"רשימת משלמים -{DateTime.Now.ToString("yyyyMMddHHmm")}.xlsx";
-                var filePath = @"C:\" + excelName;
-                using (FileStream file = new FileStream(@"C:\log\" + excelName, FileMode.Create, System.IO.FileAccess.Write))
+                var filePath = Properties.Settings.Default.ExcelReportPath + @"\" + excelName;
+                using (FileStream file = new FileStream(filePath, FileMode.Create, System.IO.FileAccess.Write))
                 {
                     byte[] bytes = new byte[stream.Length];
                     stream.Read(bytes, 0, (int)stream.Length);

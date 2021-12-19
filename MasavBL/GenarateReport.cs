@@ -19,16 +19,15 @@ namespace MasavBL
             var date = DateTime.Now;
             var chiyuvDate = new DateTime(Int32.Parse(year), Int32.Parse(month), dayInMonth);
             var fileName = DB.GetCustomerName(customerId) + " " + date.ToString("yyMMdd") + ".txt";
-            string filePath = Properties.Settings.Default.ReportPath +
-               /* System.Environment.CurrentDirectory +*/ "\\" + year + "\\" + month + "\\";
+            string filePath = Properties.Settings.Default.ReportPath + "\\" + year + "\\" + month + "\\";
             Directory.CreateDirectory(filePath);
             FileInfo info = new FileInfo(filePath + fileName);
             if (info.Exists && overrideFile != true)
                 return new GenerateReportRes(string.Empty, false, "File already Exsist");
-            if (CreateMasavReport(filePath + fileName, dayInMonth, chiyuvDate,customerId))
+            if (CreateMasavReport(filePath + fileName, dayInMonth, chiyuvDate,customerId, Int32.Parse(year), Int32.Parse(month)))
             {
                 //יצירת רשומות בטבלת היסטורית תשלומים
-                var phRes = await DB.AddPaymentHistory(dayInMonth, customerId);
+                var phRes = await DB.AddPaymentHistory(dayInMonth, customerId, Int32.Parse(year), Int32.Parse(month));
                 //יצירת הרשומה בטבלת היסטורית שידורים
                 if (phRes.AmountSum != 0)
                 {
@@ -108,7 +107,7 @@ namespace MasavBL
 
         }
 
-        public static bool CreateMasavReport(string filePath, int dayInMonth, DateTime chiyuvDate, int customerId)
+        public static bool CreateMasavReport(string filePath, int dayInMonth, DateTime chiyuvDate, int customerId, int year, int month)
         {
             try
             {
@@ -116,7 +115,7 @@ namespace MasavBL
                 using (StreamWriter writer = info.CreateText())
                 {
                     writer.WriteLine(GetKOT(chiyuvDate));
-                    foreach (var item in DB.GetPayingsToReport(dayInMonth, customerId))
+                    foreach (var item in DB.GetPayingsToReport(dayInMonth, customerId,year,month))
                     {
                         writer.WriteLine(GetReshuma(item.CodeBank?.Code, item.BankBranchNumber,
                                item.BankAccountNumber, item.IdentityNumber, item.Name,

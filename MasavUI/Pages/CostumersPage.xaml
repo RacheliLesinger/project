@@ -38,9 +38,9 @@
                 </Grid>
             </Border>
             <StackPanel Orientation="Horizontal" Margin="10"  Grid.Column="1" Grid.ColumnSpan="2" FlowDirection="LeftToRight">
-                <Button Name="btnExportToExcel" Content="יצא לאקסל"  Click="ExportToExcelAndCsv_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True"/>
-                <Button Name="btnEditCostumer" Content="עריכה"  Click="btnEditCostumer_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True"/>
-                <Button Name="btnNewCostumer" Content="לקוח חדש"  Click="btnNewCostumer_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True"/>
+                <Button Name="btnExportToExcel" Content="יצא לאקסל"  Click="ExportToExcelAndCsv_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True" Background="#FF9CB2DA"  FontWeight="Bold" BorderBrush="#FF211D1D"/>
+                <Button Name="btnEditCostumer" Content="עריכה"  Click="btnEditCostumer_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True" Background="#FF9CB2DA"  FontWeight="Bold" BorderBrush="#FF211D1D"/>
+                <Button Name="btnNewCostumer" Content="לקוח חדש"  Click="btnNewCostumer_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True" Background="#FF9CB2DA"  FontWeight="Bold" BorderBrush="#FF211D1D"/>
             </StackPanel>
         </Grid>
         

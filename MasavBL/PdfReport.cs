@@ -69,28 +69,36 @@ namespace MasavBL
         //}
 
 
-        public static async Task<GenerateReportRes> GenerateBroadcastReport(int dayInMonth, int customerId, bool overrideFile)
+        public static async Task<GenerateReportRes> GenerateBroadcastReport(int year, int month,int dayInMonth, int customerId, bool overrideFile)
         {
             var date = DateTime.Now;
 
             var fileName = customerId + "_" + date.ToString("yyMMdd") + ".pdf";
-            string filePath = Properties.Settings.Default.PdfReportPath;
+            string filePath = Properties.Settings.Default.PdfReportPath + "\\" + year + "\\" + month + "\\";
+
+            //string filePath = Properties.Settings.Default.PdfReportPath;
             Directory.CreateDirectory(filePath);
             FileInfo info = new FileInfo(filePath + fileName);
             if (info.Exists && overrideFile != true)
                 return new GenerateReportRes(string.Empty, false, "File already Exsist");
 
-            var list = DB.GetPayingsToReport(dayInMonth, customerId);
+            var list = DB.GetPayingsToReport(dayInMonth, customerId, year,month);
             var customer = DB.GetCustomerName(customerId);
 
             var repPath = CreatePdf(list,customer, filePath + "\\" + fileName);
-            return new GenerateReportRes(repPath, true, string.Empty);
+            var newFileName = filePath + "\\" + customer + " " + date.ToString("yyMMdd") + ".pdf";
+            if (File.Exists(newFileName))
+            {
+                File.Delete(newFileName);
+            }
+            File.Move(repPath, newFileName);
+            return new GenerateReportRes(newFileName, true, string.Empty);
         }
 
         public static string CreatePdf(List<Paying> list, string customer ,string filePath)
         {
             var htmlData = File.ReadAllText(Environment.CurrentDirectory + "..\\..\\..\\..\\MasavBL\\‏‏HTMLbroadcastReportNew.html");
-            var htmlPath = Path.Combine("C:\\log", "ReplayMessage.html");
+            var htmlPath = Path.Combine(Properties.Settings.Default.PdfReportPath, "ReplayMessage.html");
             htmlData = htmlData.Replace("customer_name", customer);
             htmlData = htmlData.Replace("madad", "");
             htmlData = htmlData.Replace("dolar", "");
@@ -99,7 +107,7 @@ namespace MasavBL
             htmlData = htmlData.Replace("sum_record", InsertSumRecord(list));
             htmlData = htmlData.Replace("sum_amount", list.Sum(i => i.Amount).Value.ToString());
             File.WriteAllText(htmlPath, htmlData, Encoding.UTF8);
-            // filePath = "C:\\log\\yyyy.pdf";
+       
             PdfConvert.ConvertHtmlToPdf(new Codaxy.WkHtmlToPdf.PdfDocument
             {
                 Url = htmlPath,

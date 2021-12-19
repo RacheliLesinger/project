@@ -16,7 +16,7 @@
 				<ColumnDefinition Width="840px" />
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<Border BorderBrush="DarkBlue" BorderThickness="0.8"  >
+            <Border BorderBrush="Black" BorderThickness="1" Background="#FFA5BEE1" >
 				<Grid  Grid.Column="0" >
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*" />
@@ -30,23 +30,23 @@
 					</Grid.RowDefinitions>
 
 					<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0">
-						<TextBlock Text="מוסד" Margin="30" DockPanel.Dock="Left" />
+						<TextBlock Text="בחר לקוח" Margin="20,30,10,30" DockPanel.Dock="Left" />
                         <ComboBox Name="cmbCustomers" Margin="0,30,50,30" DockPanel.Dock="Left" >
                         </ComboBox >
 					</StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0">
-                        <TextBlock Text="סטטוס" Margin="30"  DockPanel.Dock="Left"/>
+                        <TextBlock Text="סטטוס" Margin="20,30,10,30"  DockPanel.Dock="Left"/>
                         <ComboBox Name="cmbActivity"  Margin="0,30,50,30" DockPanel.Dock="Left" >
                         </ComboBox>
                     </StackPanel>
 
-                    <Button Name="btnFilter" Content="סנן"  Margin="30" DockPanel.Dock="Right" Grid.Row="0" Grid.Column="3" Click="btnFilter_Click" Background="#FFDFE0EA" FontWeight="Bold"/>
+                    <Button  Name="btnFilter" Content="סנן"  Margin="18" DockPanel.Dock="Right" Grid.Row="0" Grid.Column="3" Click="btnFilter_Click" Background="#FFDFE0EA" FontWeight="Bold" BorderBrush="Black"/>
 				</Grid>
 			</Border>
 			<StackPanel Orientation="Horizontal" Margin="10"  Grid.Column="1" Grid.ColumnSpan="2" FlowDirection="LeftToRight">
-				<Button Name="btnExportToExcel" Content="יצא לאקסל"  Click="ExportToExcelAndCsv_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True"/>
-                <Button Name="btnEditPaying" Content="עריכה"  Click="btnEditPaying_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True"/>
-                <Button Name="btnNewPaying" Content="משלם חדש"  Click="btnNewPaying_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True"/>
+                <Button Name="btnExportToExcel" Content="יצא לאקסל"  Click="ExportToExcelAndCsv_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True" Background="#FF9CB2DA"  FontWeight="Bold" BorderBrush="#FF211D1D"/>
+                <Button Name="btnEditPaying" Content="עריכה"  Click="btnEditPaying_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True" Background="#FF9CB2DA"  FontWeight="Bold" BorderBrush="#FF211D1D"/>
+                <Button Name="btnNewPaying" Content="משלם חדש"  Click="btnNewPaying_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True" Background="#FF9CB2DA"  FontWeight="Bold" BorderBrush="#FF211D1D"/>
             </StackPanel>
 			
 		</Grid>
@@ -65,7 +65,7 @@
                       CanUserAddRows="False"  CanUserDeleteRows="False" 
 						  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" CanUserResizeRows="False" CanUserSortColumns="True">
                 <DataGrid.Columns >
-                    <DataGridTextColumn Header="שם מוסד" Binding="{Binding Customers.Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="שם לקוח" Binding="{Binding Customers.Name}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="שם משלם" Binding="{Binding Name}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="תעודת זהות" Binding="{Binding IdentityNumber}" IsReadOnly="True" />
                     <DataGridTextColumn Header="מטבע" Binding="{Binding Currency.Name}" IsReadOnly="True" />

@@ -52,7 +52,7 @@ namespace MasavBL.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Report")]
         public string ReportPath {
             get {
                 return ((string)(this["ReportPath"]));
@@ -61,10 +61,19 @@ namespace MasavBL.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\log")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Log")]
         public string PdfReportPath {
             get {
                 return ((string)(this["PdfReportPath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\ExcelFiles")]
+        public string ExcelReportPath {
+            get {
+                return ((string)(this["ExcelReportPath"]));
             }
         }
     }

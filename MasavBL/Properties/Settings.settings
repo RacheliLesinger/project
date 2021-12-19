@@ -12,10 +12,13 @@
       <Value Profile="(Default)">09376013</Value>
     </Setting>
     <Setting Name="ReportPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:</Value>
+      <Value Profile="(Default)">C:\Report</Value>
     </Setting>
     <Setting Name="PdfReportPath" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\log</Value>
+      <Value Profile="(Default)">C:\Log</Value>
+    </Setting>
+    <Setting Name="ExcelReportPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\ExcelFiles</Value>
     </Setting>
   </Settings>
 </SettingsFile>

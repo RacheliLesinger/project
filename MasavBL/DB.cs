@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.Migrations;
 using log4net;
+using System.Net.Http;
 
 namespace MasavBL
 {
@@ -111,15 +112,42 @@ namespace MasavBL
             }
             return true;
         }
-        public static List<Paying> GetPayingsToReport(int dayInMonth , int customerId)
+        public static List<Paying> GetPayingsToReport(int dayInMonth , int customerId, int year, int month)
         {
+            var dt = new DateTime(year, month, dayInMonth);
             using (var ctx = new MasavContext())
             {
                 return ctx.Payings.AsNoTracking()
                     .Include("CodeBank")
-                    .Where(p => p.CustomerId == customerId && p.ActivityId == 1 && p.PaymentDate == dayInMonth)
+                    .Where(p => p.CustomerId == customerId && p.ActivityId == 1 && p.PaymentDate == dayInMonth
+                                   &&( (p.StartDate <= dt && p.EndDate >= dt)
+                                   ||(p.PaymentSum > 0 )))
                     .ToList();
             }
+        }
+
+        public static async Task GetCurrencyRateAsync()
+        {
+            //Examples:
+            var from = "EUR";
+            var to = "USD";
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    client.BaseAddress = new Uri("https://free.currencyconverterapi.com");
+                    var response = await client.GetAsync($"/api/v6/convert?q={from}_{to}&compact=y");
+                    var stringResult = await response.Content.ReadAsStringAsync();
+                    //var dictResult = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(stringResult);
+                    //return dictResult[$"{from}_{to}"]["val"];
+                }
+                catch (HttpRequestException httpRequestException)
+                {
+                    Console.WriteLine(httpRequestException.StackTrace);
+                    //return "Error calling API. Please do manual lookup.";
+                }
+            }
+
         }
 
 
@@ -148,14 +176,17 @@ namespace MasavBL
             }
         }
 
-        public static async Task<AddPaymentHistoryRes> AddPaymentHistory(int dt, int customerId)
+        public static async Task<AddPaymentHistoryRes> AddPaymentHistory(int dayInMonth, int customerId, int year, int month)
         {
             var res = new AddPaymentHistoryRes();
             try
             {
+                var dt = new DateTime(year, month, dayInMonth);
                 using (var ctx = new MasavContext())
                 {
-                    var payments = ctx.Payings.Where(p => p.CustomerId == customerId && p.ActivityId == 1 && p.PaymentDate == dt).ToList();
+                    var payments = ctx.Payings.Where(p => p.CustomerId == customerId && p.ActivityId == 1 && p.PaymentDate == dayInMonth
+                                       && ((p.StartDate <= dt && p.EndDate >= dt)
+                                   || (p.PaymentSum > 0))).ToList();
                     foreach (var item in payments)
                     {
                         if (!item.IsNew)
@@ -179,7 +210,7 @@ namespace MasavBL
             }
             catch (Exception ex)
             {
-                log.Error($"Exception in AddPaymentHistory, customerId: {customerId} date in month: {dt} , ex: {ex.Message}");
+                log.Error($"Exception in AddPaymentHistory, customerId: {customerId} date in month: {dayInMonth} , ex: {ex.Message}");
             }
             return res;
         }

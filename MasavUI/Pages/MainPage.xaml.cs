@@ -112,25 +112,6 @@ namespace MasavUI.Pages
             {
                 MessageBox.Show("בעיה ביצירת האקסל");
             }
-            //dgReports.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
-            //ApplicationCommands.Copy.Execute(null, dgReports);
-            //String resultat = (string)Clipboard.GetData(DataFormats.Rtf);
-            //String result = (string)Clipboard.GetData(DataFormats.Text);
-            //dgReports.UnselectAllCells();
-            ////string fileName = "file" + DateTime.Now;
-            //SaveFileDialog saveFileDialog = new SaveFileDialog();
-            //saveFileDialog.FileName = "דוח משלמים";
-            //saveFileDialog.Filter = "CSV  file (*.csv)|*.csv";
-            //if (saveFileDialog.ShowDialog() == true)
-            //{
-            //    if (saveFileDialog.FileName != string.Empty)
-            //    {
-            //        System.IO.StreamWriter file1 = new System.IO.StreamWriter(saveFileDialog.FileName, true, Encoding.UTF8);
-            //        file1.WriteLine(resultat);
-            //        file1.Close();
-            //    }
-            //    MessageBox.Show(" csv הקובץ נוצר בהצלחה בפורמט \n ונשמר ב: \n" + saveFileDialog.FileName);
-            //}
         }
 
         private void btnEditPaying_Click(object sender, RoutedEventArgs e)
@@ -139,7 +120,6 @@ namespace MasavUI.Pages
             {
                 Title = "עריכת פרטי משלם"
             };
-
             SetDialogEditPaymentData(dialog);
 
             Button customSaveButton = new Button() { Content = "שמירה", Margin = new Thickness(5) };
@@ -229,6 +209,17 @@ namespace MasavUI.Pages
             {
                 Title = " יצירת משלם חדש"
             };
+
+            if ((int)cmbCustomers.SelectedValue != 0)
+            {
+                dialog.cmbCustomer.SelectedValue = (int)cmbCustomers.SelectedValue;
+                dialog.cmbPaymentDate.SelectedValue = ((Customer)cmbCustomers.SelectedItem).PaymentDate1;
+            }
+            dialog.cmbActivity.SelectedValue = 1; //פעיל
+            dialog.cmbCurrency.SelectedValue = 1; //שקל
+            dialog.dpStartDate.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dialog.dpEndDate.SelectedDate = DateTime.MaxValue;
+            dialog.txtPaymentSum.Text = "-1";
 
             Button customSaveButton = new Button() { Content = "שמירה", Margin = new Thickness(5) };
             customSaveButton.Click += (ss, ee) =>

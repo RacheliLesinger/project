@@ -22,14 +22,37 @@ namespace MasavUI.Pages
         {
             InitializeComponent();
 
+            cmbYear.ItemsSource = GetYears();
+            cmbYear.SelectedItem = DateTime.Now.Year;
+
+            var monthList = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+            cmbMonthly.ItemsSource = monthList;
+            cmbMonthly.SelectedItem = DateTime.Now.Month;
+
+            var dayInMonthList = new List<int>();
+            dayInMonthList.AddRange(Enumerable.Range(1, 31).ToArray());
+            cmbDayInMonth.ItemsSource = dayInMonthList;
+            cmbDayInMonth.SelectedIndex = 0;
+
             //initialize comboBox
             var customersList = new List<Customer>();
-            //  customersList.Add(new Customer { Name = "כל הלקוחות", Id = 0 });
             customersList.AddRange(DB.GetCustomersList());
             cmbCustomers.DisplayMemberPath = "Name";
             cmbCustomers.SelectedValuePath = "Id";
             cmbCustomers.ItemsSource = customersList;
             cmbCustomers.SelectedIndex = 0;
+        }
+
+        private IEnumerable GetYears()
+        {
+            var y = DateTime.Now.Year;
+            var list = new List<int>();
+            for (int i = y - 5; i <= y + 5; i++)
+            {
+                list.Add(i);
+            }
+            return list;
+
         }
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
@@ -53,7 +76,8 @@ namespace MasavUI.Pages
                 }
                 else
                 {
-                    res = await PdfReport.GenerateBroadcastReport(dpStartDate.SelectedDate.Value.Day,
+                    res = await PdfReport.GenerateBroadcastReport((int)cmbYear.SelectedValue,
+                        (int)cmbMonthly.SelectedValue, (int)cmbDayInMonth.SelectedValue,
                                             (int)cmbCustomers.SelectedValue, OverrideFile);
                 }
                 if (res.Success && res.FilePath != string.Empty)
@@ -62,6 +86,8 @@ namespace MasavUI.Pages
                     tbProgressSuccess.Visibility = Visibility.Visible;
                     tbWaiting.Visibility = Visibility.Collapsed;
                     mpbWaiting.Visibility = Visibility.Collapsed;
+                    tbProblematic.Visibility = Visibility.Collapsed;
+                    spProblematic.Visibility = Visibility.Collapsed;
                     System.Diagnostics.Process.Start(res.FilePath);
                 }
                 else
@@ -79,15 +105,16 @@ namespace MasavUI.Pages
 
         private bool CheckRequierd()
         {
-            if (dpStartDate.SelectedDate == null || dpEndDate.SelectedDate == null)
-            {
-                tbError.Text = "חובה לבחור תאריך התחלה ותאריך סיום ";
-                if (cmbCustomers.SelectedValue == null)
-                    tbError.Text += Environment.NewLine + "חובה לבחור לקוח ";
-                tbError.Visibility = Visibility.Visible;
-                return false;
-            }
-            else if (cmbCustomers.SelectedValue == null)
+            //if (dpStartDate.SelectedDate == null || dpEndDate.SelectedDate == null)
+            //{
+                //tbError.Text = "חובה לבחור תאריך התחלה ותאריך סיום ";
+                //if (cmbCustomers.SelectedValue == null)
+                //    tbError.Text += Environment.NewLine + "חובה לבחור לקוח ";
+                //tbError.Visibility = Visibility.Visible;
+                //return false;
+            //}
+            //else
+            if (cmbCustomers.SelectedValue == null)
             {
                 tbError.Text = "חובה לבחור לקוח ";
                 tbError.Visibility = Visibility.Visible;
@@ -132,6 +159,11 @@ namespace MasavUI.Pages
         private void Brodcasts_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void CmbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            cmbDayInMonth.SelectedItem = ((Customer)cmbCustomers.SelectedItem).PaymentDate1;
         }
     }
 }
