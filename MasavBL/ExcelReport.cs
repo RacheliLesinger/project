@@ -60,41 +60,80 @@ namespace MasavBL
             return res;
         }
 
-        public static GenerateReportRes ImportFromExcel(Stream stream)
+        public static GenerateReportRes ImportFromExcel(Stream stream, Customer customer, bool removeNotExsist)
         {
             var res = new GenerateReportRes(string.Empty, false, "");
             try
             {
+                var exsistingPayings = DB.GetPayings(customer.Id);
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using (var package = new ExcelPackage(stream))
                 {
-                    ExcelWorksheet worksheet = package.Workbook.Worksheets[1];
-                    int rowCount = worksheet.Dimension.End.Row;     //get row count
-                    for (int row = 1; row <= rowCount; row++)
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                    int rowCount = worksheet.Dimension.End.Row;//get row count
+                    int row = 4;
+                    try
                     {
-                        var p = new Paying();
-                        p.Name = worksheet.Cells[row, 1].Value?.ToString();
-                        p.IdentityNumber = worksheet.Cells[row, 2].Value?.ToString();
-                        p.PaymentDate = (int)worksheet.Cells[row, 3].Value;
-                        p.PaymentSum = (int)worksheet.Cells[row, 4].Value;
-                        p.Amount = (int)worksheet.Cells[row, 5].Value;
-                        p.CodeBankId = (int)worksheet.Cells[row, 6].Value;
-                        p.BankBranchNumber = worksheet.Cells[row, 7].Value?.ToString();
-                        p.BankAccountNumber = worksheet.Cells[row, 8].Value?.ToString();
-                        p.StartDate =Convert.ToDateTime(worksheet.Cells[row, 9].Value?.ToString());
-                        p.EndDate = Convert.ToDateTime(worksheet.Cells[row, 10].Value?.ToString());
-
-                       var s = DB.UpdatePayings(p);
+                        for (; row <= rowCount; row++)
+                        {
+                            var identityNumber = worksheet.Cells[row, 1].Value?.ToString();
+                            if (identityNumber == string.Empty || identityNumber == null)
+                                break;
+                            var exsist = exsistingPayings.FirstOrDefault(i => i.IdentityNumber == identityNumber);
+                            var p = new Paying();
+                            if (exsist != null)
+                                p = exsist;
+                            p.IdentityNumber = worksheet.Cells[row, 1].Value?.ToString();
+                            p.Name = worksheet.Cells[row, 2].Value?.ToString();
+                            p.CodeBankId = DB.GetBankIdByCode(worksheet.Cells[row, 3].Value?.ToString());
+                            p.BankBranchNumber = worksheet.Cells[row, 4].Value?.ToString();
+                            p.BankAccountNumber = worksheet.Cells[row, 5].Value?.ToString();
+                            p.Amount = Int32.Parse(worksheet.Cells[row, 6].Value?.ToString());
+                            if (exsist == null)//משלם חדש - הגדרות ברירת מחדל
+                            {
+                                p.CustomerId = customer.Id;
+                                p.PaymentDate = (int)customer.PaymentDate1;
+                                p.PaymentSum = -1;
+                                p.StartDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                                p.EndDate = DateTime.MaxValue;
+                                p.CurrencyId = 1; //שקל
+                                p.ActivityId = 1; //פעיל
+                                p.IsNew = true;
+                            }
+                            exsistingPayings.RemoveAll(i => i.IdentityNumber == identityNumber);
+                            var s = DB.UpdatePayings(p);
+                            if (s == false)
+                            {
+                                
+                                res.ErrorMessage = "קימת בעיה בשורה מספר " + row + " ";
+                                if (p.CodeBankId == 0)
+                                    res.ErrorMessage += " לא קיים קוד בנק כזה במסד הנתונים";
+                                return res;
+                            }
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        res.ErrorMessage = "קימת בעיה בשורה מספר "+ row + " ";
+                        throw;
+                    }
+                    res.CountUpdatedRows = row -3;
+                    if (removeNotExsist == true)
+                    {
+                        foreach (var item in exsistingPayings)
+                        {
+                            item.ActivityId = 3; //מחוק
+                            var s = DB.UpdatePayings(item);
+                        }
                     }
                 }
-
                 res.Success = true;
             }
             catch (Exception ex)
             {
-                res.ErrorMessage = ex.Message;
+                res.ErrorMessage += ex.Message;
                 Console.WriteLine(ex.Message);
-                throw;
+                //throw;
             }
             return res;
         }

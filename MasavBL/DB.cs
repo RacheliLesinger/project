@@ -292,6 +292,18 @@ namespace MasavBL
             }
         }
 
+        public static int GetBankIdByCode(string codeBank)
+        {
+            using (var ctx = new MasavContext())
+            {
+                var val = ctx.CodeBanks.AsNoTracking()
+                    .FirstOrDefault(b => b.Code == codeBank);
+                if(val != null)
+                  return val.Id;
+                return 0;
+            }
+        }
+
         public static List<Activity> GetActivitiesList()
         {
             using (var ctx = new MasavContext())

@@ -145,6 +145,8 @@ namespace MasavBL
             this.ErrorMessage = err;
         }
         public string FilePath { get; set; }
+
+        public int? CountUpdatedRows { get; set; }
         public bool Success { get; set; }
 
         public string ErrorMessage { get; set; }

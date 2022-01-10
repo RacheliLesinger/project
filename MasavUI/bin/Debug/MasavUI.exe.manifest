@@ -103,26 +103,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MasavBL.dll" size="64000">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MasavBL.dll" size="65536">
       <assemblyIdentity name="MasavBL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>YPk3TsNUH0jHoXegPCwvp1ldRsRNRFCAZxMyo72xAX4=</dsig:DigestValue>
+        <dsig:DigestValue>3TiOYNHIDxn/aSGecBdcbgCZmSJ4MaKZl445J2kRcJw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MasavUI.exe" size="427008">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MasavUI.exe" size="426496">
       <assemblyIdentity name="MasavUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XNxHMCWYHKQSXopUfkVBv1iX2pxO4LZFMl3OlkGFkuE=</dsig:DigestValue>
+        <dsig:DigestValue>3JFFHqAm9JQptZW9EKpELWaOD9YKkku0SBDqkARc3Dc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

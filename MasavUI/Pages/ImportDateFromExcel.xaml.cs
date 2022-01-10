@@ -45,35 +45,64 @@ namespace MasavUI.Pages
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            
-            var customerId = (int)cmbCustomers.SelectedValue;
-            btnCreateReport_Click(sender, e);
+            try
+            {
+                var customerId = (int)cmbCustomers.SelectedValue;
+                btnCreateReport_Click(sender, e);
+            }
+            catch(IOException ioEx)
+            {
+                tbProgressSuccess.Text = ioEx.Message + System.Environment.NewLine;
+                tbProgressSuccess.Visibility = Visibility.Visible;
+                tbWaiting.Visibility = Visibility.Collapsed;
+                mpbWaiting.Visibility = Visibility.Collapsed;
+            }
+            catch(Exception ex)
+            {
+                tbProgressSuccess.Text = ex.Message + System.Environment.NewLine;
+                tbProgressSuccess.Visibility = Visibility.Visible;
+                tbWaiting.Visibility = Visibility.Collapsed;
+                mpbWaiting.Visibility = Visibility.Collapsed;
+            }
 
         }
 
         private async void btnCreateReport_Click(object sender, RoutedEventArgs e)
-        { 
-            tbProblematic.Visibility = Visibility.Collapsed;
-            spProblematic.Visibility = Visibility.Collapsed;
-            tbWaiting.Visibility = Visibility.Visible;
-            mpbWaiting.Visibility = Visibility.Visible;
-
+        {
+            try
+            {
             // Create OpenFileDialog 
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.DefaultExt = ".xlsx";
             dlg.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
             Nullable<bool> result = dlg.ShowDialog();
-            if (result == true)
-            {
-                // Open document 
-                string filename = dlg.FileName;
-                var f = dlg.OpenFile();
+                if (result == true)
+                {
+                    // Open document 
+                    string filename = dlg.FileName;
+                    var f = dlg.OpenFile();
+                    tbWaiting.Visibility = Visibility.Visible;
+                    mpbWaiting.Visibility = Visibility.Visible;
+                    var res = ExcelReport.ImportFromExcel(f, (Customer)cmbCustomers.SelectedItem, (bool)cbRemoveExsist.IsChecked);
+                    if (res.Success && res.CountUpdatedRows > 0)
+                    {
+                        tbProgressSuccess.Text = "התהליך הסתיים בהצלחהת עודכנו " + res.CountUpdatedRows + " רשומות " + System.Environment.NewLine;
+                        tbProgressSuccess.Visibility = Visibility.Visible;
+                        tbWaiting.Visibility = Visibility.Collapsed;
+                        mpbWaiting.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        tbProgressSuccess.Text = res.ErrorMessage + System.Environment.NewLine;
+                        tbProgressSuccess.Visibility = Visibility.Visible;
+                        tbWaiting.Visibility = Visibility.Collapsed;
+                        mpbWaiting.Visibility = Visibility.Collapsed;
+                    }
+                }
             }
-            //var res = await GenarateReport.GenerateReport(cmbYear.SelectedValue.ToString(), cmbMonthly.SelectedValue.ToString()
-            //                                     ,(int)cmbDayInMonth.SelectedValue, (int)cmbCustomers.SelectedValue,OverrideFile);
-            //if (res.Success && res.FilePath != string.Empty)
+            catch(Exception ex)
             {
-                tbProgressSuccess.Text = "התהליך הסתיים בהצלחה" + System.Environment.NewLine;
+                tbProgressSuccess.Text = ex.Message + System.Environment.NewLine;
                 tbProgressSuccess.Visibility = Visibility.Visible;
                 tbWaiting.Visibility = Visibility.Collapsed;
                 mpbWaiting.Visibility = Visibility.Collapsed;
