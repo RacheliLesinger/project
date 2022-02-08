@@ -115,7 +115,15 @@ namespace MasavBL
                 using (StreamWriter writer = info.CreateText())
                 {
                     writer.WriteLine(GetKOT(chiyuvDate));
-                    foreach (var item in DB.GetPayingsToReport(dayInMonth, customerId,year,month))
+                    var list = DB.GetPayingsToReport(dayInMonth, customerId, year, month);
+                    list.ForEach( i =>
+                    {
+                        if (i.CodeBank?.Code.Length == 1)
+                            i.CodeBank.Code = "0" + i.CodeBank.Code;
+                    });
+                    list.OrderBy(i => i.CodeBank?.Code).ThenBy(i => i.BankBranchNumber).ThenBy(i => i.BankAccountNumber);
+
+                    foreach (var item in list)
                     {
                         writer.WriteLine(GetReshuma(item.CodeBank?.Code, item.BankBranchNumber,
                                item.BankAccountNumber, item.IdentityNumber, item.Name,
