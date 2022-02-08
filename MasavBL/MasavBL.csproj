@@ -102,6 +102,7 @@
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\CurrencyRates.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Institution.cs" />
     <Compile Include="Models\Paying.cs" />
     <Compile Include="Models\PaymentHistory.cs" />
     <Compile Include="Models\User.cs" />

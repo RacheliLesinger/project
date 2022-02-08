@@ -21,7 +21,7 @@ namespace MasavBL
         public DbSet<PaymentHistory> PaymentHistories { get; set; }
         public DbSet<CodeBank> CodeBanks { get; set; }
         public DbSet<User> Users { get; set; }
-
+        public DbSet<Institution> Institutions { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder

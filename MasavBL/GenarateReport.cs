@@ -43,14 +43,14 @@ namespace MasavBL
             return new GenerateReportRes(string.Empty, false, "CreateMasavReport fail");
         }
 
-        public static string GetKOT(DateTime chiyuvDate)
+        public static string GetKOT(DateTime chiyuvDate,string customerCode, Models.Institution institution)
         {
             // כותרת
             var createdDate = DateTime.Now.ToString("yyMMdd");
-            string mosad = Properties.Settings.Default.Mosad; // "09376013";
+            string mosad = customerCode; //Properties.Settings.Default.Mosad; // "09376013";
             string chiyuvDateStr = chiyuvDate.ToString("yyMMdd"); //תאריך חיוב 
-            string mosadSholeach = Properties.Settings.Default.MosadNum; // "00004"; //מוסד שולח    
-            string mosadName = Properties.Settings.Default.ShemMosad;// "D&TD OELQ - DXEAC OIXTLD"; // שם מוסד  
+            string mosadSholeach = institution.Code; //Properties.Settings.Default.MosadNum; // "00004"; //מוסד שולח    
+            string mosadName = institution.Name; //Properties.Settings.Default.ShemMosad;// "D&TD OELQ - DXEAC OIXTLD"; // שם מוסד  
 
             string KOT = "K" + mosad + "00" + chiyuvDateStr + "0" + "001" + "0" + createdDate + mosadSholeach + "000000" + mosadName.PadLeft(30, ' ') + "KOT".PadLeft(59, ' ');
             if (KOT.Length == 128)
@@ -59,10 +59,10 @@ namespace MasavBL
 
         }
 
-        public static string GetEndLine(int amountSum, int sumRecord, DateTime chiyuvDate)
+        public static string GetEndLine(int amountSum, int sumRecord, DateTime chiyuvDate, string customerCode)
         {
             // רשומת סה"כ
-            string mosad = Properties.Settings.Default.Mosad;
+            string mosad = customerCode; //Properties.Settings.Default.Mosad;
             string chiyuvDateStr = chiyuvDate.ToString("yyMMdd"); //תאריך חיוב
 
             string num7 = "".PadLeft(15, '0'); //בהוראות כתוב 15 אפסים ובדוגמא זה לא מופיע
@@ -82,10 +82,10 @@ namespace MasavBL
         }
 
         public static string GetReshuma(string KodBank, string MisparSnif, string MisparCheshbon, string payingIdentityNumber,
-            string customerName, double amount)
+            string customerName, double amount,string customerCode)
         {
             // רשומת תנועה
-            string mosad = Properties.Settings.Default.Mosad;
+            string mosad = customerCode; // Properties.Settings.Default.Mosad;
             string sugCheshbon = "0000"; // סוג חשבון
             string newCustomerName = ConversionTable.ConvertFromHebrew(customerName); //"DXETV ODK"; 
 
@@ -114,24 +114,26 @@ namespace MasavBL
                 FileInfo info = new FileInfo(filePath);
                 using (StreamWriter writer = info.CreateText())
                 {
-                    writer.WriteLine(GetKOT(chiyuvDate));
+                    var customerCode = DB.GetCustomerCode(customerId);
+                    var institution = DB.GetInstitutionByCustomerId(customerId);
+                    writer.WriteLine(GetKOT(chiyuvDate, customerCode, institution));
                     var list = DB.GetPayingsToReport(dayInMonth, customerId, year, month);
                     list.ForEach( i =>
                     {
                         if (i.CodeBank?.Code.Length == 1)
                             i.CodeBank.Code = "0" + i.CodeBank.Code;
                     });
-                    list.OrderBy(i => i.CodeBank?.Code).ThenBy(i => i.BankBranchNumber).ThenBy(i => i.BankAccountNumber);
+                    list = list.OrderBy(i => i.CodeBank?.Code).ThenBy(i => i.BankBranchNumber).ThenBy(i => i.BankAccountNumber).ToList();
 
                     foreach (var item in list)
                     {
                         writer.WriteLine(GetReshuma(item.CodeBank?.Code, item.BankBranchNumber,
                                item.BankAccountNumber, item.IdentityNumber, item.Name,
-                               Convert.ToDouble(item.Amount)));
+                               Convert.ToDouble(item.Amount),customerCode));
                     }
                     var res = DB.GetSumResultOfPayment(dayInMonth, customerId);
-                    writer.WriteLine(GetEndLine(res.AmountSum, res.SumRecord,chiyuvDate));
-                    writer.WriteLine("".PadLeft(128, '9'));
+                    writer.WriteLine(GetEndLine(res.AmountSum, res.SumRecord,chiyuvDate,customerCode));
+                    //writer.WriteLine("".PadLeft(128, '9'));
                 }
                 return true;
             }

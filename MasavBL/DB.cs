@@ -176,6 +176,24 @@ namespace MasavBL
             }
         }
 
+        public static string GetCustomerCode(int customerId)
+        {
+            using (var ctx = new MasavContext())
+            {
+                return ctx.Customers.AsNoTracking().FirstOrDefault(c => c.Id == customerId)?.Code;
+            }
+        }
+
+        public static Institution GetInstitutionByCustomerId(int customerId)
+        {
+            using (var ctx = new MasavContext())
+            {
+                return ctx.Customers.AsNoTracking()
+                    .Include("Institution")
+                    .FirstOrDefault(c => c.Id == customerId)?.Institution;
+            }
+        }
+
         public static async Task<AddPaymentHistoryRes> AddPaymentHistory(int dayInMonth, int customerId, int year, int month)
         {
             var res = new AddPaymentHistoryRes();

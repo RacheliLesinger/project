@@ -59,6 +59,12 @@ namespace MasavBL.Models
         [DisplayName("מייל")]
         public string Email { get; set; }
 
+        //[Required]
+        [DisplayName("קוד המוסד השולח")]
+        [EpplusIgnore]
+        public Nullable<int> InstitutionId { get; set; }
+
+
 
         [EpplusIgnore]
         public virtual ICollection<BroadcastHistory> BroadcastHistory { get; set; }
@@ -69,6 +75,10 @@ namespace MasavBL.Models
         [ForeignKey ("ActivityId")]
         [DisplayName("פעילות")]
         public virtual Activity Activity { get; set; }
+
+        [ForeignKey("InstitutionId")]
+        [DisplayName("המוסד השולח")]
+        public virtual Institution Institution { get; set; }
 
     }
 }

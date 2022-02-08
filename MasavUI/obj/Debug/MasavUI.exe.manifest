@@ -16,14 +16,14 @@
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
           UAC Manifest Options
-          If you want to change the Windows User Account Control level replace the 
+          If you want to change the Windows User Account Control level replace the
           requestedExecutionLevel node with one of the following.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         If you want to utilize File and Registry Virtualization for backward 
+         If you want to utilize File and Registry Virtualization for backward
          compatibility then delete the requestedExecutionLevel node.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
@@ -103,14 +103,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MasavBL.dll" size="65536">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MasavBL.dll" size="68096">
       <assemblyIdentity name="MasavBL" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3TiOYNHIDxn/aSGecBdcbgCZmSJ4MaKZl445J2kRcJw=</dsig:DigestValue>
+        <dsig:DigestValue>CI2GjA9AW/wiYnJ8GwxlOVecwDr0UbMDuJLpXTxY7R4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -122,7 +122,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3JFFHqAm9JQptZW9EKpELWaOD9YKkku0SBDqkARc3Dc=</dsig:DigestValue>
+        <dsig:DigestValue>2h0SYXNiMhBVkT5V5K0lAX03C2+2MOZDq3jnlC63DbY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
