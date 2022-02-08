@@ -12,9 +12,9 @@ DEBUG;TRACE
 C:\Users\user\Desktop\מסב\project\MasavUI\App.xaml
 101416712016
 2-93155893
-12661530121
+13-180829246
 133-1831103128
 MainWindow.xaml;Pages\BroadcastPage.xaml;Pages\CostumersPage.xaml;Pages\ImportDateFromExcel.xaml;Pages\ReceiptsReport.xaml;Pages\CreateNewReports.xaml;Pages\MainPage.xaml;Popups\EditBroadcast.xaml;Popups\EditCostumer.xaml;Popups\EditPaying.xaml;
 
-False
+True
 
