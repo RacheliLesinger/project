@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\user\Desktop\מסב\project\MasavUI\obj\Debug\
+D:\11.1.22\project\MasavUI\obj\Debug\
 MasavUI
 none
 false
 DEBUG;TRACE
-C:\Users\user\Desktop\מסב\project\MasavUI\App.xaml
+D:\11.1.22\project\MasavUI\App.xaml
 101416712016
 2-93155893
 12661530121
-133-1831103128
+133-628420140
 MainWindow.xaml;Pages\BroadcastPage.xaml;Pages\CostumersPage.xaml;Pages\ImportDateFromExcel.xaml;Pages\ReceiptsReport.xaml;Pages\CreateNewReports.xaml;Pages\MainPage.xaml;Popups\EditBroadcast.xaml;Popups\EditCostumer.xaml;Popups\EditPaying.xaml;
 
 False
