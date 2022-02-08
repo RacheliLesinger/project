@@ -81,3 +81,51 @@ C:\Users\user\Desktop\מסב\project\MasavBL\obj\Debug\MasavBL.csproj.CoreCompil
 C:\Users\user\Desktop\מסב\project\MasavBL\obj\Debug\MasavBL.csproj.CopyComplete
 C:\Users\user\Desktop\מסב\project\MasavBL\obj\Debug\MasavBL.dll
 C:\Users\user\Desktop\מסב\project\MasavBL\obj\Debug\MasavBL.pdb
+D:\New folder (2)\project\MasavBL\bin\Debug\MasavBL.dll.config
+D:\New folder (2)\project\MasavBL\bin\Debug\MasavBL.dll
+D:\New folder (2)\project\MasavBL\bin\Debug\MasavBL.pdb
+D:\New folder (2)\project\MasavBL\bin\Debug\BouncyCastle.Crypto.dll
+D:\New folder (2)\project\MasavBL\bin\Debug\EntityFramework.dll
+D:\New folder (2)\project\MasavBL\bin\Debug\EntityFramework.SqlServer.dll
+D:\New folder (2)\project\MasavBL\bin\Debug\EPPlus.dll
+D:\New folder (2)\project\MasavBL\bin\Debug\HtmlRenderer.dll
+D:\New folder (2)\project\MasavBL\bin\Debug\HtmlRenderer.PdfSharp.dll
+D:\New folder (2)\project\MasavBL\bin\Debug\log4net.dll
+D:\New folder (2)\project\MasavBL\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+D:\New folder (2)\project\MasavBL\bin\Debug\System.ComponentModel.Annotations.dll
+D:\New folder (2)\project\MasavBL\bin\Debug\EntityFramework.xml
+D:\New folder (2)\project\MasavBL\bin\Debug\EntityFramework.SqlServer.xml
+D:\New folder (2)\project\MasavBL\bin\Debug\EPPlus.xml
+D:\New folder (2)\project\MasavBL\bin\Debug\HtmlRenderer.pdb
+D:\New folder (2)\project\MasavBL\bin\Debug\HtmlRenderer.PdfSharp.pdb
+D:\New folder (2)\project\MasavBL\bin\Debug\log4net.xml
+D:\New folder (2)\project\MasavBL\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\New folder (2)\project\MasavBL\obj\Debug\MasavBL.csprojAssemblyReference.cache
+D:\New folder (2)\project\MasavBL\obj\Debug\MasavBL.csproj.CoreCompileInputs.cache
+D:\New folder (2)\project\MasavBL\obj\Debug\MasavBL.csproj.CopyComplete
+D:\New folder (2)\project\MasavBL\obj\Debug\MasavBL.dll
+D:\New folder (2)\project\MasavBL\obj\Debug\MasavBL.pdb
+D:\11.1.22\project\MasavBL\bin\Debug\MasavBL.dll.config
+D:\11.1.22\project\MasavBL\bin\Debug\MasavBL.dll
+D:\11.1.22\project\MasavBL\bin\Debug\MasavBL.pdb
+D:\11.1.22\project\MasavBL\bin\Debug\BouncyCastle.Crypto.dll
+D:\11.1.22\project\MasavBL\bin\Debug\EntityFramework.dll
+D:\11.1.22\project\MasavBL\bin\Debug\EntityFramework.SqlServer.dll
+D:\11.1.22\project\MasavBL\bin\Debug\EPPlus.dll
+D:\11.1.22\project\MasavBL\bin\Debug\HtmlRenderer.dll
+D:\11.1.22\project\MasavBL\bin\Debug\HtmlRenderer.PdfSharp.dll
+D:\11.1.22\project\MasavBL\bin\Debug\log4net.dll
+D:\11.1.22\project\MasavBL\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+D:\11.1.22\project\MasavBL\bin\Debug\System.ComponentModel.Annotations.dll
+D:\11.1.22\project\MasavBL\bin\Debug\EntityFramework.xml
+D:\11.1.22\project\MasavBL\bin\Debug\EntityFramework.SqlServer.xml
+D:\11.1.22\project\MasavBL\bin\Debug\EPPlus.xml
+D:\11.1.22\project\MasavBL\bin\Debug\HtmlRenderer.pdb
+D:\11.1.22\project\MasavBL\bin\Debug\HtmlRenderer.PdfSharp.pdb
+D:\11.1.22\project\MasavBL\bin\Debug\log4net.xml
+D:\11.1.22\project\MasavBL\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\11.1.22\project\MasavBL\obj\Debug\MasavBL.csprojAssemblyReference.cache
+D:\11.1.22\project\MasavBL\obj\Debug\MasavBL.csproj.CoreCompileInputs.cache
+D:\11.1.22\project\MasavBL\obj\Debug\MasavBL.csproj.CopyComplete
+D:\11.1.22\project\MasavBL\obj\Debug\MasavBL.dll
+D:\11.1.22\project\MasavBL\obj\Debug\MasavBL.pdb

@@ -163,3 +163,113 @@ C:\Users\user\Desktop\מסב\project\MasavUI\obj\Debug\MasavUI.application
 C:\Users\user\Desktop\מסב\project\MasavUI\obj\Debug\MasavUI.csproj.CopyComplete
 C:\Users\user\Desktop\מסב\project\MasavUI\obj\Debug\MasavUI.exe
 C:\Users\user\Desktop\מסב\project\MasavUI\obj\Debug\MasavUI.pdb
+D:\New folder (2)\project\MasavUI\bin\Debug\MasavUI.exe.config
+D:\New folder (2)\project\MasavUI\bin\Debug\MasavUI.exe.manifest
+D:\New folder (2)\project\MasavUI\bin\Debug\MasavUI.application
+D:\New folder (2)\project\MasavUI\bin\Debug\MasavUI.exe
+D:\New folder (2)\project\MasavUI\bin\Debug\MasavUI.pdb
+D:\New folder (2)\project\MasavUI\bin\Debug\EntityFramework.dll
+D:\New folder (2)\project\MasavUI\bin\Debug\EntityFramework.SqlServer.dll
+D:\New folder (2)\project\MasavUI\bin\Debug\FirstFloor.ModernUI.dll
+D:\New folder (2)\project\MasavUI\bin\Debug\log4net.dll
+D:\New folder (2)\project\MasavUI\bin\Debug\MasavBL.dll
+D:\New folder (2)\project\MasavUI\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+D:\New folder (2)\project\MasavUI\bin\Debug\System.ComponentModel.Annotations.dll
+D:\New folder (2)\project\MasavUI\bin\Debug\EPPlus.dll
+D:\New folder (2)\project\MasavUI\bin\Debug\MasavBL.pdb
+D:\New folder (2)\project\MasavUI\bin\Debug\MasavBL.dll.config
+D:\New folder (2)\project\MasavUI\bin\Debug\EntityFramework.xml
+D:\New folder (2)\project\MasavUI\bin\Debug\EntityFramework.SqlServer.xml
+D:\New folder (2)\project\MasavUI\bin\Debug\FirstFloor.ModernUI.xml
+D:\New folder (2)\project\MasavUI\bin\Debug\log4net.xml
+D:\New folder (2)\project\MasavUI\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\New folder (2)\project\MasavUI\bin\Debug\EPPlus.xml
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI.csprojAssemblyReference.cache
+D:\New folder (2)\project\MasavUI\obj\Debug\MainWindow.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\BroadcastPage.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\CostumersPage.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\ImportDateFromExcel.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\ReceiptsReport.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\CreateNewReports.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\MainPage.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\App.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\MainWindow.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\BroadcastPage.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\CostumersPage.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\ImportDateFromExcel.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\ReceiptsReport.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\CreateNewReports.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\Pages\MainPage.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\Popups\EditBroadcast.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\Popups\EditCostumer.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\Popups\EditPaying.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\App.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI_Content.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI_MarkupCompile.cache
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI_MarkupCompile.lref
+D:\New folder (2)\project\MasavUI\obj\Debug\Popups\EditBroadcast.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\Popups\EditCostumer.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\Popups\EditPaying.baml
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI.g.resources
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI.csproj.CoreCompileInputs.cache
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI.exe.manifest
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI.application
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI.csproj.CopyComplete
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI.exe
+D:\New folder (2)\project\MasavUI\obj\Debug\MasavUI.pdb
+D:\11.1.22\project\MasavUI\bin\Debug\MasavUI.exe.config
+D:\11.1.22\project\MasavUI\bin\Debug\MasavUI.exe.manifest
+D:\11.1.22\project\MasavUI\bin\Debug\MasavUI.application
+D:\11.1.22\project\MasavUI\bin\Debug\MasavUI.exe
+D:\11.1.22\project\MasavUI\bin\Debug\MasavUI.pdb
+D:\11.1.22\project\MasavUI\bin\Debug\EntityFramework.dll
+D:\11.1.22\project\MasavUI\bin\Debug\EntityFramework.SqlServer.dll
+D:\11.1.22\project\MasavUI\bin\Debug\FirstFloor.ModernUI.dll
+D:\11.1.22\project\MasavUI\bin\Debug\log4net.dll
+D:\11.1.22\project\MasavUI\bin\Debug\MasavBL.dll
+D:\11.1.22\project\MasavUI\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+D:\11.1.22\project\MasavUI\bin\Debug\System.ComponentModel.Annotations.dll
+D:\11.1.22\project\MasavUI\bin\Debug\EPPlus.dll
+D:\11.1.22\project\MasavUI\bin\Debug\MasavBL.pdb
+D:\11.1.22\project\MasavUI\bin\Debug\MasavBL.dll.config
+D:\11.1.22\project\MasavUI\bin\Debug\EntityFramework.xml
+D:\11.1.22\project\MasavUI\bin\Debug\EntityFramework.SqlServer.xml
+D:\11.1.22\project\MasavUI\bin\Debug\FirstFloor.ModernUI.xml
+D:\11.1.22\project\MasavUI\bin\Debug\log4net.xml
+D:\11.1.22\project\MasavUI\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\11.1.22\project\MasavUI\bin\Debug\EPPlus.xml
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI.csprojAssemblyReference.cache
+D:\11.1.22\project\MasavUI\obj\Debug\MainWindow.baml
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\BroadcastPage.baml
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\CostumersPage.baml
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\ImportDateFromExcel.baml
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\ReceiptsReport.baml
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\CreateNewReports.baml
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\MainPage.baml
+D:\11.1.22\project\MasavUI\obj\Debug\App.baml
+D:\11.1.22\project\MasavUI\obj\Debug\MainWindow.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\BroadcastPage.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\CostumersPage.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\ImportDateFromExcel.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\ReceiptsReport.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\CreateNewReports.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\Pages\MainPage.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\Popups\EditBroadcast.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\Popups\EditCostumer.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\Popups\EditPaying.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\App.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI_Content.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI_MarkupCompile.cache
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI_MarkupCompile.lref
+D:\11.1.22\project\MasavUI\obj\Debug\Popups\EditBroadcast.baml
+D:\11.1.22\project\MasavUI\obj\Debug\Popups\EditCostumer.baml
+D:\11.1.22\project\MasavUI\obj\Debug\Popups\EditPaying.baml
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI.g.resources
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI.csproj.CoreCompileInputs.cache
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI.exe.manifest
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI.application
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI.csproj.CopyComplete
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI.exe
+D:\11.1.22\project\MasavUI\obj\Debug\MasavUI.pdb
