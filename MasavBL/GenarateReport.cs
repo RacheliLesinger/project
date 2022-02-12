@@ -73,8 +73,8 @@ namespace MasavBL
 
             //string KOT = "5" + mosad + "00" + chiyuvDateStr + "0" + "001" + num7 + sumReshumot.PadLeft(15, '0') + num9 +
             //               countReshumot.PadLeft(7, '0') + "".PadLeft(63, ' ');
-            string KOT = "5" + mosad + "00" + chiyuvDateStr + "0" + "001" + sumReshumot.PadLeft(15, '0') + "".PadLeft(15, '0') +
-                           countReshumot.PadLeft(7, '0') + "".PadLeft(7, '0') + "".PadLeft(63, ' ');
+            string KOT = "5" + mosad + "00" + chiyuvDateStr + "0" + "001"  +"".PadLeft(15, '0') + sumReshumot.PadLeft(15, '0') +
+                           "".PadLeft(7, '0') + countReshumot.PadLeft(7, '0') +  "".PadLeft(63, ' ');
             if (KOT.Length == 128)
                 return KOT;
             return null;
