@@ -50,7 +50,7 @@ namespace MasavBL
             string mosad = customerCode; //Properties.Settings.Default.Mosad; // "09376013";
             string chiyuvDateStr = chiyuvDate.ToString("yyMMdd"); //תאריך חיוב 
             string mosadSholeach = institution.Code; //Properties.Settings.Default.MosadNum; // "00004"; //מוסד שולח    
-            string mosadName = institution.Name; //Properties.Settings.Default.ShemMosad;// "D&TD OELQ - DXEAC OIXTLD"; // שם מוסד  
+            string mosadName = ConversionTable.ConvertFromHebrew(institution.Name); //Properties.Settings.Default.ShemMosad;// "D&TD OELQ - DXEAC OIXTLD"; // שם מוסד  
 
             string KOT = "K" + mosad + "00" + chiyuvDateStr + "0" + "001" + "0" + createdDate + mosadSholeach + "000000" + mosadName.PadLeft(30, ' ') + "KOT".PadLeft(59, ' ');
             if (KOT.Length == 128)
