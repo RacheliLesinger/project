@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="MasavUI.Pages.CreateNewReports"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mui="http://firstfloorsoftware.com/ModernUI"	
+			 mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="320">
+	<Grid Style="{StaticResource ContentRoot}">
+		<ScrollViewer>
+			<StackPanel MinWidth="700">
+				<Grid  Margin="10,10,10,0" >
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="1*" />
+						<ColumnDefinition Width="5*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+						<TextBlock Text="שנה" Margin="10"  DockPanel.Dock="Left" />
+						<ComboBox Name="cmbYear" Margin="0,10,10,10" DockPanel.Dock="Left" >
+						</ComboBox>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
+						<TextBlock Text="חודש" Margin="10" DockPanel.Dock="Left" />
+                        <ComboBox Name="cmbMonthly" Margin="0,10,50,10" DockPanel.Dock="Left" >
+                        </ComboBox >
+					</StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2">
+                        <TextBlock Text="יום בחודש" Margin="10" DockPanel.Dock="Left" />
+                        <ComboBox Name="cmbDayInMonth" Margin="0,10,50,10" DockPanel.Dock="Left" >
+                        </ComboBox >
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3">
+						<TextBlock Text="מוסד" Margin="10" DockPanel.Dock="Left" />
+                        <ComboBox Name="cmbCustomers" Margin="0,10,50,10" DockPanel.Dock="Left" SelectionChanged="CmbCustomers_SelectionChanged">
+                        </ComboBox >
+                    </StackPanel>
+					<Button Name="btnCreate" Content="צור דוחות"  Margin="10" DockPanel.Dock="Right" Grid.Column="0" Grid.Row="4" Click="btnCreate_Click"  Background="#FFDFE0EA"/>
+					<TextBlock Name="tbProblematic" Text="דוח כזה כבר קיים ,האם תרצה ליצור את הדוח בכל זאת?" Margin="10" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="6" Foreground="Red" Visibility="Collapsed" TextWrapping="WrapWithOverflow" />
+					<StackPanel Name="spProblematic"  Orientation="Horizontal" Margin="10,0,10,10"  Grid.Row="7" Grid.Column="0"  FlowDirection="LeftToRight" Visibility="Collapsed">
+						<Button Name="btnCancalCreateReport" Content="לא"  Click="btnCancalCreateReport_Click" Margin="10" DockPanel.Dock="Right" IsEnabled="True"/>
+						<Button Name="btnCreateReport" Content="כן" Click="btnForceCreateReport_Click"  Margin="10" DockPanel.Dock="Right" />
+					</StackPanel>
+					
+
+					<TextBlock Name="tbWaiting" Text="תהליך הפקת הדוחות לוקח מספר דקות. אנא המתן." Margin="10" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="5"  Visibility="Collapsed" TextWrapping="WrapWithOverflow"/>
+					<mui:ModernProgressRing Name="mpbWaiting" IsActive="{Binding IsActive}" Visibility="Collapsed" Grid.Column="0" Grid.Row="6"/>
+					<TextBlock Name="tbProgressSuccess"  Margin="10" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="5"  Visibility="Collapsed" TextWrapping="WrapWithOverflow"/>
+				</Grid>
+			</StackPanel>
+		</ScrollViewer>
+	</Grid>
+</UserControl>

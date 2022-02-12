@@ -1,0 +1,51 @@
+﻿<mui:ModernWindow x:Name="MainWindow1" x:Class="MasavUI.MainWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mui="http://firstfloorsoftware.com/ModernUI"
+                  Title="1.0 מערכת הוראות קבע" IsTitleVisible="True" 
+				 
+                  ContentSource="/Pages/MainPage.xaml"
+				  WindowStyle="None"  Loaded="MainWindow1_Loaded"
+                  Background="White" FlowDirection="RightToLeft" Cursor="Arrow"   WindowStartupLocation="CenterScreen"  ResizeMode="CanMinimize">
+	<mui:ModernWindow.Content>
+		<StackPanel>
+			<TextBlock Text="1.0 מערכת ניהול הוראות קבע" Style="{StaticResource Heading2}"  />
+	</StackPanel>
+	</mui:ModernWindow.Content>
+	<mui:ModernWindow.MenuLinkGroups>
+        <mui:LinkGroup DisplayName="משלמים         " >
+            <mui:LinkGroup.Links  >
+                <mui:Link  Source="/Pages/MainPage.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="לקוחות         " >
+            <mui:LinkGroup.Links  >
+                <mui:Link  Source="/Pages/CostumersPage.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        <mui:LinkGroup DisplayName="הכנת קבצי מסב         "  >
+            <mui:LinkGroup.Links>
+                <mui:Link  Source="/Pages/CreateNewReports.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+
+        <mui:LinkGroup DisplayName="דוחות         "  >
+            <mui:LinkGroup.Links>
+                <mui:Link  Source="/Pages/ReceiptsReport.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+
+        <mui:LinkGroup DisplayName="עדכון היסטוריית שידורים         "  >
+            <mui:LinkGroup.Links>
+                <mui:Link  Source="/Pages/BroadcastPage.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+
+        <mui:LinkGroup DisplayName="טעינת משלמים"  >
+            <mui:LinkGroup.Links>
+                <mui:Link  Source="/Pages/ImportDateFromExcel.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        
+    </mui:ModernWindow.MenuLinkGroups>
+</mui:ModernWindow>
