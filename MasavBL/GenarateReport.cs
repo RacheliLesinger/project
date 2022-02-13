@@ -88,7 +88,8 @@ namespace MasavBL
             string mosad = customerCode; // Properties.Settings.Default.Mosad;
             string sugCheshbon = "0000"; // סוג חשבון
             string newCustomerName = ConversionTable.ConvertFromHebrew(customerName); //"DXETV ODK"; 
-
+            if (newCustomerName.Length > 16)
+                newCustomerName = newCustomerName.Substring(0, 16);
             string amountStr = string.Format("{0:N2}", amount).Replace(".", "").Replace(",","");
             string mosadIdentity = payingIdentityNumber; // מס מזהה ללקוח במוסד 
             string tkufatChiyuv = "00000000"; // תקופת חיוב
