@@ -87,7 +87,9 @@ namespace MasavBL
                             p.Name = worksheet.Cells[row, 2].Value?.ToString();
                             p.CodeBankId = DB.GetBankIdByCode(worksheet.Cells[row, 3].Value?.ToString());
                             p.BankBranchNumber = worksheet.Cells[row, 4].Value?.ToString();
+                            p.BankBranchNumber = GetNumbers(p.BankBranchNumber);
                             p.BankAccountNumber = worksheet.Cells[row, 5].Value?.ToString();
+                            p.BankAccountNumber = GetNumbers(p.BankAccountNumber);
                             p.Amount = Double.Parse(worksheet.Cells[row, 6].Value?.ToString());
                             p.ActivityId = 1; //פעיל
 
@@ -137,6 +139,11 @@ namespace MasavBL
                 //throw;
             }
             return res;
+        }
+
+        private static string GetNumbers(string input)
+        {
+            return new string(input.Where(c => char.IsDigit(c)).ToArray());
         }
 
         public static GenerateReportRes ExportCostumersToExcel()

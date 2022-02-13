@@ -26,6 +26,8 @@ namespace MasavBL
                     .Include("PaymentHistory")
                     .Where(i => (i.CustomerId == customerId || customerId == 0) &&
                                                   (i.ActivityId == activityId || activityId == 0))
+                    .OrderBy(i => i.Customers.Name)
+                    .ThenBy(i => i.Name)
                     .ToList();
 
                 return list;
@@ -264,6 +266,7 @@ namespace MasavBL
                     .Include("Activity")
                     .Include("Institution")
                     .Where(i => (i.ActivityId == activityId || activityId == 0))
+                    .OrderBy(i => i.Name)
                     .ToList();
                 return list;
             }

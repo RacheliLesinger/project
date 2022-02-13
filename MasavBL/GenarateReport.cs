@@ -18,7 +18,7 @@ namespace MasavBL
         {
             var date = DateTime.Now;
             var chiyuvDate = new DateTime(Int32.Parse(year), Int32.Parse(month), dayInMonth);
-            var fileName = DB.GetCustomerName(customerId) + " " + date.ToString("yyMMdd") + ".txt";
+            var fileName = DB.GetCustomerCode(customerId) + ".txt";
             string filePath = Properties.Settings.Default.ReportPath + "\\" + year + "\\" + month + "\\";
             Directory.CreateDirectory(filePath);
             FileInfo info = new FileInfo(filePath + fileName);
@@ -92,7 +92,7 @@ namespace MasavBL
             string amountStr = string.Format("{0:N2}", amount).Replace(".", "").Replace(",","");
             string mosadIdentity = payingIdentityNumber; // מס מזהה ללקוח במוסד 
             string tkufatChiyuv = "00000000"; // תקופת חיוב
-            string sugTnua = "006"; // סוג תנועה - 504
+            string sugTnua = "504"; // סוג תנועה - 504
 
 
 
