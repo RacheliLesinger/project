@@ -75,8 +75,8 @@ namespace MasavBL
                     int r = 1;
                     try
                     {
-                        for (; 1 <= rowCount; r++)
-                            if (worksheet.Cells[row, 1].Value?.ToString().Trim() == "$$")
+                        for (; r <= rowCount; r++)
+                            if (worksheet.Cells[r, 1].Value?.ToString().Trim() == "$$")
                                 break;
                         if (r != rowCount)
                             row = r++;
