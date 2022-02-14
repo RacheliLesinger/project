@@ -131,6 +131,7 @@
   <ItemGroup>
     <Content Include="HTMLbroadcastReport - Copy.html" />
     <Content Include="HTMLbroadcastReport.html" />
+    <Content Include="‏‏HTMLbroadcastReportNew.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

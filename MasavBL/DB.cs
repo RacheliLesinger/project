@@ -209,10 +209,11 @@ namespace MasavBL
                                    || (p.PaymentSum > 0))).ToList();
                     foreach (var item in payments)
                     {
-                        if (!item.IsNew)
+                        if (item.IsNew)
                         {
-                            item.IsNew = true;
+                            item.IsNew = false;
                             ctx.Payings.AddOrUpdate(item);
+                            res.SumNewRecord++;
                         }
                         var ph = new PaymentHistory()
                         {

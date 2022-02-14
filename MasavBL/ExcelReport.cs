@@ -72,8 +72,14 @@ namespace MasavBL
                     ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
                     int rowCount = worksheet.Dimension.End.Row;//get row count
                     int row = 4;
+                    int r = 1;
                     try
                     {
+                        for (; 1 <= rowCount; r++)
+                            if (worksheet.Cells[row, 1].Value?.ToString().Trim() == "$$")
+                                break;
+                        if (r != rowCount)
+                            row = r++;
                         for (; row <= rowCount; row++)
                         {
                             var identityNumber = worksheet.Cells[row, 1].Value?.ToString();
