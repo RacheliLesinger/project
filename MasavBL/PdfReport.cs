@@ -97,6 +97,9 @@ namespace MasavBL
 
         public static string CreatePdf(List<Paying> list, string customer ,string filePath)
         {
+            foreach (var item in list)
+                item.IsNew = DB.IsNewPaying(item);
+
             var htmlData = File.ReadAllText(Environment.CurrentDirectory + "..\\..\\..\\..\\MasavBL\\‏‏HTMLbroadcastReportNew.html");
             var htmlPath = Path.Combine(Properties.Settings.Default.PdfReportPath, "ReplayMessage.html");
             htmlData = htmlData.Replace("customer_name", customer);
@@ -163,7 +166,7 @@ namespace MasavBL
              <td> madad </td>
              <td> amount </td>
              </tr> ";
-            row = row.Replace("identity", item.IdentityNumber);
+            row = row.Replace("identity", item.IdentityNumber); 
             row = row.Replace("new", item.IsNew == true ? "ח":"");
             row = row.Replace("paying_name", item.Name);
             row = row.Replace("bank", item.CodeBank?.Name);

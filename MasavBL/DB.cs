@@ -128,6 +128,17 @@ namespace MasavBL
             }
         }
 
+        public static bool IsNewPaying(Paying paying)
+        {
+            using (var ctx = new MasavContext())
+            {
+               var res = ctx.PaymentHistories.AsNoTracking().FirstOrDefault(p => p.PaidId == paying.Id);
+                if (res == null)
+                    return true;
+            }
+            return false;
+        }
+
         public static async Task GetCurrencyRateAsync()
         {
             //Examples:
