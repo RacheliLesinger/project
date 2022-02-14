@@ -132,8 +132,8 @@ namespace MasavBL
         {
             using (var ctx = new MasavContext())
             {
-               var res = ctx.PaymentHistories.AsNoTracking().FirstOrDefault(p => p.PaidId == paying.Id);
-                if (res == null)
+               var res = ctx.PaymentHistories.AsNoTracking().Where(p => p.PaidId == paying.Id);
+                if (res != null && res.Count() == 1)
                     return true;
             }
             return false;

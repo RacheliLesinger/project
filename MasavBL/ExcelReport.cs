@@ -79,7 +79,7 @@ namespace MasavBL
                             if (worksheet.Cells[r, 1].Value?.ToString().Trim() == "$$")
                                 break;
                         if (r != rowCount)
-                            row = r++;
+                            row = r+1;
                         for (; row <= rowCount; row++)
                         {
                             var identityNumber = worksheet.Cells[row, 1].Value?.ToString();
