@@ -94,7 +94,8 @@ namespace MasavUI.Pages
             spProblematic.Visibility = Visibility.Collapsed;
             tbWaiting.Visibility = Visibility.Visible;
             mpbWaiting.Visibility = Visibility.Visible;
-
+            if(tbDolarRate.Text != null && tbDolarRate.Text != string.Empty)
+              await DB.UpdateCurrencyRateAsync(tbDolarRate.Text);
             var res = await GenarateReport.GenerateReport(cmbYear.SelectedValue.ToString(), cmbMonthly.SelectedValue.ToString()
                                                  ,(int)cmbDayInMonth.SelectedValue, (int)cmbCustomers.SelectedValue
                                                  ,(int)cmbClass.SelectedValue,OverrideFile, (bool)cbIsOverride.IsChecked);

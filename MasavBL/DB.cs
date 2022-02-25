@@ -15,6 +15,13 @@ namespace MasavBL
         Active =1,
         InActive =2
     }
+
+    enum EnumCurrency : int
+    {
+        Shekel = 1,
+        Dolar = 2,
+        Euro =3
+    }
     public class DB
     {
         private static readonly ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -151,6 +158,15 @@ namespace MasavBL
                                        .OrderBy(p => p.Name)
                                        .ToList();
                 }
+                var lastRate = ctx.CurrencyRates.OrderByDescending(r => r.Date).FirstOrDefault();
+                if (lastRate != null)
+                {
+                    foreach (var item in payments)
+                    {
+                        if (item.CurrencyId == (int)EnumCurrency.Dolar)
+                            item.Amount = item.Amount * lastRate.CurrencyRateInShekels;
+                    }
+                }
                 return payments;
             }
         }
@@ -181,6 +197,14 @@ namespace MasavBL
             return false;
         }
 
+        public static double? GetLastRate()
+        {
+            using (var ctx = new MasavContext())
+            {
+                return ctx.CurrencyRates.OrderByDescending(r => r.Date).FirstOrDefault()?.CurrencyRateInShekels;
+            }
+        }
+
         public static async Task GetCurrencyRateAsync()
         {
             //Examples:
@@ -205,7 +229,25 @@ namespace MasavBL
 
         }
 
-
+        public static async Task UpdateCurrencyRateAsync(string rate)
+        {
+            using (var ctx = new MasavContext())
+            {
+                double rateD;
+                var res = Double.TryParse(rate, out rateD);
+                if (res == true)
+                {
+                    var cr = new CurrencyRates()
+                    {
+                        CurrencyId = (int)EnumCurrency.Dolar,
+                        Date = DateTime.Now,
+                        CurrencyRateInShekels = rateD,
+                    };
+                    ctx.CurrencyRates.Add(cr);
+                    await ctx.SaveChangesAsync();
+                }
+            }
+        }
 
         public static string GetPayingName(int payingId)
         {
@@ -256,8 +298,10 @@ namespace MasavBL
             try
             {
                 var dt = new DateTime(year, month, dayInMonth);
+               
                 using (var ctx = new MasavContext())
                 {
+                    var lastRate = ctx.CurrencyRates.OrderByDescending(r => r.Date).FirstOrDefault();
                     if (isOverride)
                     {
                         await OveerideLastPaymentToSpecificCustomer(customerId);
@@ -277,6 +321,7 @@ namespace MasavBL
                                            && ((p.StartDate <= dt && p.EndDate >= dt)
                                            || (p.PaymentSum > 0))).ToList();
                     }
+                    double? tempAmount = 0;
                     foreach (var item in payments)
                     {
                         if (item.IsNew || IsNewPayingToPaymentHistory(item))
@@ -285,17 +330,24 @@ namespace MasavBL
                             ctx.Payings.AddOrUpdate(item);
                             res.SumNewRecord++;
                         }
+
+                        if (lastRate != null && item.CurrencyId == (int)EnumCurrency.Dolar)
+                        {
+                            tempAmount = item.Amount * lastRate.CurrencyRateInShekels;
+                        }
+                        else tempAmount = item.Amount;
+
                         var ph = new PaymentHistory()
                         {
                             CustomerId = customerId,
                             PaidId = item.Id,
                             PaymentDate = DateTime.Now,
-                            PaymentAmount = item.Amount,
+                            PaymentAmount = tempAmount,
                             StatusId = (int)EnumStatus.Active,
                         };
                         ctx.PaymentHistories.Add(ph);
                         await ctx.SaveChangesAsync();
-                        res.AmountSum += (double)item.Amount;
+                        res.AmountSum += (double)tempAmount;
                         res.SumRecord++;
                     }
                 }
@@ -316,7 +368,7 @@ namespace MasavBL
                     //שליפת השידור האחרון עבור הלקוח
                     var customerBroadcast = ctx.BroadcastHistories.Where(b => b.CustomerId == customerId
                                                             && b.StatusId == (int)EnumStatus.Active)
-                                                            .OrderBy(b => b.BroadcastDate);
+                                                            .OrderByDescending(b => b.BroadcastDate);
 
                     if (customerBroadcast.FirstOrDefault() != null)
                     {
@@ -351,10 +403,15 @@ namespace MasavBL
             {
                 using (var ctx = new MasavContext())
                 {
+                    var lastRate = ctx.CurrencyRates.OrderByDescending(r => r.Date).FirstOrDefault();
                     var payments = ctx.Payings.AsNoTracking()
                         .Where(p => p.CustomerId == customerId && p.ActivityId == 1 && p.PaymentDate == dt).ToList();
                     foreach (var item in payments)
-                    { 
+                    {
+                        if (lastRate != null && item.CurrencyId == (int)EnumCurrency.Dolar)
+                        {
+                            item.Amount = item.Amount * lastRate.CurrencyRateInShekels;
+                        }
                         res.AmountSum += (double)item.Amount;
                         res.SumRecord++;
                     }
@@ -481,7 +538,7 @@ namespace MasavBL
                     .Include("Customers")
                     .AsNoTracking()
                     .Where(p => (p.CustomerId == customerId ||customerId == 0) && p.StatusId == (int)EnumStatus.Active)
-                    .OrderBy(p => p.PaymentDate)
+                    .OrderByDescending(p => p.PaymentDate)
                     .ToList();
                 foreach (var item in list)
                 {

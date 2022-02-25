@@ -53,17 +53,22 @@
                     </StackPanel>
                     <CheckBox  Name="cbIsOverride" Margin="0,10,0,10" MinWidth="10" DockPanel.Dock="Left"  Grid.Column="0" Grid.Row="5">
                         האם זאת ריצת תיקון לריצה האחרונה</CheckBox >
-                    <Button Name="btnCreate" Content="צור דוחות"  Margin="10" DockPanel.Dock="Right" Grid.Column="0" Grid.Row="6" Click="btnCreate_Click"  Background="#FFDFE0EA"/>
-					<TextBlock Name="tbProblematic" Text="דוח כזה כבר קיים ,האם תרצה ליצור את הדוח בכל זאת?" Margin="10" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="8" Foreground="Red" Visibility="Collapsed" TextWrapping="WrapWithOverflow" />
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="6">
+                        <TextBlock Text="שער הדולר" Margin="10" DockPanel.Dock="Left" />
+                        <TextBox Name="tbDolarRate" Margin="0,10,10,10" DockPanel.Dock="Left" MinWidth="100">
+                        </TextBox>
+                    </StackPanel>
+                    <Button Name="btnCreate" Content="צור דוחות"  Margin="10" DockPanel.Dock="Right" Grid.Column="0" Grid.Row="7" Click="btnCreate_Click"  Background="#FFDFE0EA"/>
+					<TextBlock Name="tbProblematic" Text="דוח כזה כבר קיים ,האם תרצה ליצור את הדוח בכל זאת?" Margin="10" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="9" Foreground="Red" Visibility="Collapsed" TextWrapping="WrapWithOverflow" />
 					<StackPanel Name="spProblematic"  Orientation="Horizontal" Margin="10,0,10,10"  Grid.Row="8" Grid.Column="0"  FlowDirection="LeftToRight" Visibility="Collapsed">
 						<Button Name="btnCancalCreateReport" Content="לא"  Click="btnCancalCreateReport_Click" Margin="10" DockPanel.Dock="Right" IsEnabled="True"/>
 						<Button Name="btnCreateReport" Content="כן" Click="btnForceCreateReport_Click"  Margin="10" DockPanel.Dock="Right" />
 					</StackPanel>
 					
 
-					<TextBlock Name="tbWaiting" Text="תהליך הפקת הדוחות לוקח מספר דקות. אנא המתן." Margin="10" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="7"  Visibility="Collapsed" TextWrapping="WrapWithOverflow"/>
-					<mui:ModernProgressRing Name="mpbWaiting" IsActive="{Binding IsActive}" Visibility="Collapsed" Grid.Column="0" Grid.Row="7"/>
-					<TextBlock Name="tbProgressSuccess"  Margin="10" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="7"  Visibility="Collapsed" TextWrapping="WrapWithOverflow"/>
+					<TextBlock Name="tbWaiting" Text="תהליך הפקת הדוחות לוקח מספר דקות. אנא המתן." Margin="10" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="9"  Visibility="Collapsed" TextWrapping="WrapWithOverflow"/>
+					<mui:ModernProgressRing Name="mpbWaiting" IsActive="{Binding IsActive}" Visibility="Collapsed" Grid.Column="0" Grid.Row="9"/>
+					<TextBlock Name="tbProgressSuccess"  Margin="10" DockPanel.Dock="Left" Grid.Column="0" Grid.Row="9"  Visibility="Collapsed" TextWrapping="WrapWithOverflow"/>
 				</Grid>
 			</StackPanel>
 		</ScrollViewer>

@@ -33,7 +33,7 @@ namespace MasavBL
                 //יצירת הרשומה בטבלת היסטורית שידורים
                 if (phRes.AmountSum != 0)
                 {
-                    bool bhRes = await DB.AddBrodcastHistory(phRes.AmountSum, customerId, phRes.SumRecord, phRes.SumNewRecord);
+                    bool bhRes = await DB.AddBrodcastHistory(phRes.AmountSum, customerId,payingClass, phRes.SumRecord, phRes.SumNewRecord);
                     if (bhRes)
                         return new GenerateReportRes(filePath + fileName, true, null);
                 }

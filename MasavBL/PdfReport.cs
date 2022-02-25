@@ -103,11 +103,12 @@ namespace MasavBL
             foreach (var item in list)
                 item.IsNew = DB.IsNewPaying(item);
 
+            var lastRate = DB.GetLastRate();
             var htmlData = File.ReadAllText(Environment.CurrentDirectory + "..\\..\\..\\..\\MasavBL\\‏‏HTMLbroadcastReportNew.html");
             var htmlPath = Path.Combine(Properties.Settings.Default.PdfReportPath, "ReplayMessage.html");
             htmlData = htmlData.Replace("customer_name", customer);
             htmlData = htmlData.Replace("madad", "     ");
-            htmlData = htmlData.Replace("dolar", "     ");
+            htmlData = htmlData.Replace("dolar", lastRate.Value.ToString());
             htmlData = htmlData.Replace("report_date", reportDate.ToShortDateString());
             htmlData = htmlData.Replace(@"<tr><td>addRow</td></tr>", InsertRows(list));
             htmlData = htmlData.Replace("sum_record", InsertSumRecord(list));
@@ -157,7 +158,11 @@ namespace MasavBL
 
         private static string InsertRow(Paying item)
         {
-           var row = @"<tr>
+            var lastRate = DB.GetLastRate();
+            var sum = item.Amount.ToString();
+            if (item.CurrencyId == (int)EnumCurrency.Dolar && lastRate != null)
+                sum = (item.Amount / lastRate).Value.ToString();
+            var row = @"<tr>
              <td> identity </td>
              <td> new </td>
              <td> paying_name </td>
@@ -175,7 +180,7 @@ namespace MasavBL
             row = row.Replace("bank", item.CodeBank?.Name);
             row = row.Replace("branch_num", item.BankBranchNumber);
             row = row.Replace("account", item.BankAccountNumber);
-            row = row.Replace("sum", item.Amount.ToString());
+            row = row.Replace("sum", sum);
             row = row.Replace("madad", "");
             row = row.Replace("amount", item.Amount.ToString());
             return row;
