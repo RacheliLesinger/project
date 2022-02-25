@@ -147,6 +147,9 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Pages\PaymentsHistoryPage.xaml.cs">
+      <DependentUpon>PaymentsHistoryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\BroadcastPage.xaml.cs">
       <DependentUpon>BroadcastPage.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,10 @@
       <DependentUpon>EditPaying.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="Pages\PaymentsHistoryPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\BroadcastPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

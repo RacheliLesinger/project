@@ -56,7 +56,7 @@
         <Label Name="lblNotes" Grid.Column="0"  Grid.Row="7" Margin="5">הערות</Label>
         <TextBox Name="txtNotes" Grid.Column="1" Grid.Row="7" MinWidth="250" Margin="5">
         </TextBox >
-        
+
     </Grid>
 
 </mui:ModernDialog>

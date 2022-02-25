@@ -54,6 +54,11 @@ namespace MasavUI.Popups
                 cmbPaymentDate.ItemsSource = paymentDateList;
                 cmbPaymentDate.SelectedIndex = 0;
 
+                var classList = new List<int>();
+                classList.AddRange(Enumerable.Range(0, 99));
+                cmbClass.ItemsSource = classList;
+                cmbClass.SelectedIndex = 0;
+
             }
             catch (Exception ex)
             {

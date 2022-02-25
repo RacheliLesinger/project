@@ -17,6 +17,7 @@ namespace MasavBL.Models
         public int PaidId { get; set; }
         [DisplayName("קוד מוסד")]
         public int CustomerId { get; set; }
+
         [DisplayName("תאריך תשלום")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public Nullable<System.DateTime> PaymentDate { get; set; }
@@ -26,5 +27,12 @@ namespace MasavBL.Models
         public virtual Customer Customers { get; set; }
         [DisplayName("משלם")]
         public virtual Paying Paying { get; set; }
+
+        [DisplayName("קוד סטטוס")]
+        public int StatusId { get; set; }
+
+        [ForeignKey("StatusId")]
+        [DisplayName("סטטוס")]
+        public virtual Status Status { get; set; }
     }
 }

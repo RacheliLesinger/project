@@ -6,12 +6,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MasavBL.Models
 {
-    public class Activity
-    {
-         public Activity()
+    public class Status
+    { 
+         public Status()
         {
-            this.Customers = new HashSet<Customer>();
-            this.Paying = new HashSet<Paying>();
+            this.PaymentHistories = new HashSet<PaymentHistory>();
+            this.BroadcastHistories = new HashSet<BroadcastHistory>();
         }
 
         public override string ToString()
@@ -19,15 +19,16 @@ namespace MasavBL.Models
             return Name;
         }
 
-        [DisplayName("קוד פעילות")]
+        [DisplayName("קוד סטטוס")]
         [Key]
         public int Id { get; set; }
-        [DisplayName("שם פעילות")]
+        [DisplayName("שם סטטוס")]
         [Column("Name", TypeName = "nvarchar(MAX)")]
         public string Name { get; set; }
 
-        public virtual ICollection<Paying> Paying { get; set; }
-        public virtual ICollection<Customer> Customers { get; set; }
+
+        public virtual ICollection<BroadcastHistory> BroadcastHistories { get; set; }
+        public virtual ICollection<PaymentHistory> PaymentHistories { get; set; }
 
     }
 }

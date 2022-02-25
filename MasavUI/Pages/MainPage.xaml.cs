@@ -50,6 +50,11 @@ namespace MasavUI.Pages
                 cmbCustomers.ItemsSource = customersList;
                 cmbCustomers.SelectedIndex = 0;
 
+                var classList = new List<int>();
+                classList.AddRange(Enumerable.Range(0, 99));
+                cmbClasses.ItemsSource = classList;
+                cmbClasses.SelectedIndex = 0;
+
                 DataGridLoaded(null, null);
             }
             catch (Exception ex)
@@ -85,7 +90,8 @@ namespace MasavUI.Pages
         {
             var customerId = (int)cmbCustomers.SelectedValue;
             var activityId = (int)cmbActivity.SelectedValue;
-            payings = DB.GetPayings(customerId, activityId);
+            var classId = (int)cmbClasses.SelectedValue;
+            payings = DB.GetPayings(customerId, activityId,classId);
             dgReports.ItemsSource = payings;
             dgReports.Items.Refresh();
 
@@ -150,6 +156,7 @@ namespace MasavUI.Pages
 
             dialog.cmbCustomer.SelectedValue = paying.CustomerId;
             dialog.cmbCustomer.IsEnabled = false;
+            dialog.cmbClass.SelectedValue = paying.Class;
             dialog.txtPaying.Text = paying.Name;
             dialog.txtPayingId.Text = paying.Id.ToString();
             dialog.txtPayingCode.Text = paying.IdentityNumber;
@@ -180,6 +187,7 @@ namespace MasavUI.Pages
             Paying paying = new Paying();
 
             paying.CustomerId = (int)dialog.cmbCustomer.SelectedValue;
+            paying.Class = (int)dialog.cmbClass.SelectedValue;
             paying.Name = dialog.txtPaying.Text;
             paying.Id = Int32.Parse(dialog.txtPayingId.Text);
             paying.IdentityNumber = dialog.txtPayingCode.Text;
@@ -217,6 +225,7 @@ namespace MasavUI.Pages
             }
             dialog.cmbActivity.SelectedValue = 1; //פעיל
             dialog.cmbCurrency.SelectedValue = 1; //שקל
+            dialog.cmbClass.SelectedValue = 0;
             dialog.dpStartDate.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             dialog.dpEndDate.SelectedDate = DateTime.MaxValue;
             dialog.txtPaymentSum.Text = "-1";
@@ -238,6 +247,16 @@ namespace MasavUI.Pages
             dialog.Buttons = new Button[] { customSaveButton, customCancelButton };
             dialog.Show();
 
+        }
+
+        private void CmbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var classList = new List<int>();
+            var customerId = (int)cmbCustomers.SelectedValue;
+            classList.AddRange(DB.GetClassesToCustomer(customerId));
+
+            cmbClasses.ItemsSource = classList;
+            cmbClasses.SelectedIndex = 0;
         }
     }
    

@@ -30,10 +30,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox Name="txtPayingId"  MinWidth="250" Margin="5" Visibility="Collapsed" ></TextBox>
+        <TextBox Name="txtPayingId"  MinWidth="250" Margin="3.5" Visibility="Collapsed" ></TextBox>
         
-        <Label Name="lblCustomer" Grid.Column="0" Grid.Row="0" Margin="5">שם מוסד</Label>
-        <ComboBox Name="cmbCustomer" Grid.Column="1" Grid.Row="0" MinWidth="250" Margin="5">
+        <Label Name="lblCustomer" Grid.Column="0" Grid.Row="0" Margin="3.5">שם מוסד</Label>
+        <ComboBox Name="cmbCustomer" Grid.Column="1" Grid.Row="0" MinWidth="250" Margin="3.5">
             <ComboBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" >
                     <Binding.ValidationRules >
@@ -42,8 +42,20 @@
                 </Binding>
             </ComboBox.Text>
         </ComboBox>
-        <Label Name="lblpayingCode" Grid.Column="0"  Grid.Row="1" Margin="5">תעודת זהות</Label>
-        <TextBox Name="txtPayingCode" Grid.Column="1" Grid.Row="1" MinWidth="250" Margin="5">
+
+        <Label Name="lblClass" Grid.Column="0" Grid.Row="1" Margin="3.5">מחלקה</Label>
+        <ComboBox Name="cmbClass" Grid.Column="1" Grid.Row="1" MinWidth="250" Margin="3.5">
+            <ComboBox.Text>
+                <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" >
+                    <Binding.ValidationRules >
+                        <pages:RequiredValidationRule FieldName="מחלקה" ValidatesOnTargetUpdated="True"></pages:RequiredValidationRule>
+                    </Binding.ValidationRules>
+                </Binding>
+            </ComboBox.Text>
+        </ComboBox>
+
+        <Label Name="lblpayingCode" Grid.Column="0"  Grid.Row="2" Margin="3.5">תעודת זהות</Label>
+        <TextBox Name="txtPayingCode" Grid.Column="1" Grid.Row="2" MinWidth="250" Margin="3.5">
             <TextBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" >
                     <Binding.ValidationRules >
@@ -52,8 +64,8 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Label Name="lblpaying" Grid.Column="0"  Grid.Row="2" Margin="5">שם משלם</Label>
-        <TextBox Name="txtPaying" Grid.Column="1" Grid.Row="2" MinWidth="250" Margin="5">
+        <Label Name="lblpaying" Grid.Column="0"  Grid.Row="3" Margin="3.5">שם משלם</Label>
+        <TextBox Name="txtPaying" Grid.Column="1" Grid.Row="3" MinWidth="250" Margin="3.5">
             <TextBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"
@@ -65,8 +77,8 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Label Name="lblCurrency" Grid.Column="0"  Grid.Row="3" Margin="5">מטבע</Label>
-        <ComboBox Name="cmbCurrency" Grid.Column="1" Grid.Row="3" MinWidth="250" Margin="5">
+        <Label Name="lblCurrency" Grid.Column="0"  Grid.Row="4" Margin="3.5">מטבע</Label>
+        <ComboBox Name="cmbCurrency" Grid.Column="1" Grid.Row="4" MinWidth="250" Margin="3.5">
             <ComboBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus">
                     <Binding.ValidationRules >
@@ -75,8 +87,8 @@
                 </Binding>
             </ComboBox.Text>
         </ComboBox >
-        <Label Name="lblActivity" Grid.Column="0"  Grid.Row="4" Margin="5">סטטוס</Label>
-        <ComboBox Name="cmbActivity" Grid.Column="1" Grid.Row="4" MinWidth="250" Margin="5">
+        <Label Name="lblActivity" Grid.Column="0"  Grid.Row="5" Margin="3.5">סטטוס</Label>
+        <ComboBox Name="cmbActivity" Grid.Column="1" Grid.Row="5" MinWidth="250" Margin="3.5">
             <ComboBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"
@@ -88,8 +100,8 @@
                 </Binding>
             </ComboBox.Text>
         </ComboBox >
-        <Label Name="lblPaymentDate" Grid.Column="0"  Grid.Row="5" Margin="5">תאריך תשלום</Label>
-        <ComboBox Name="cmbPaymentDate" Grid.Column="1" Grid.Row="5" MinWidth="250" Margin="5">
+        <Label Name="lblPaymentDate" Grid.Column="0"  Grid.Row="6" Margin="3.5">תאריך תשלום</Label>
+        <ComboBox Name="cmbPaymentDate" Grid.Column="1" Grid.Row="6" MinWidth="250" Margin="3.5">
             <ComboBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"
@@ -101,8 +113,8 @@
                 </Binding>
             </ComboBox.Text>
         </ComboBox >
-        <Label Name="lblPaymentSum" Grid.Column="0"  Grid.Row="6" Margin="5">מס פעמים</Label>
-        <TextBox Name="txtPaymentSum" Grid.Column="1" Grid.Row="6" MinWidth="250" Margin="5">
+        <Label Name="lblPaymentSum" Grid.Column="0"  Grid.Row="7" Margin="3.5">מס פעמים</Label>
+        <TextBox Name="txtPaymentSum" Grid.Column="1" Grid.Row="7" MinWidth="250" Margin="3.5">
             <TextBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"
@@ -114,8 +126,8 @@
                 </Binding>
             </TextBox.Text>
         </TextBox >
-        <Label Name="lblAmount" Grid.Column="0"  Grid.Row="7" Margin="5">סכום</Label>
-        <TextBox Name="txtAmount" Grid.Column="1" Grid.Row="7" MinWidth="250" Margin="5">
+        <Label Name="lblAmount" Grid.Column="0"  Grid.Row="8" Margin="3.5">סכום</Label>
+        <TextBox Name="txtAmount" Grid.Column="1" Grid.Row="8" MinWidth="250" Margin="3.5">
             <TextBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"
@@ -127,8 +139,8 @@
                 </Binding>
             </TextBox.Text>
         </TextBox >
-        <Label Name="lblCodeBank" Grid.Column="0"  Grid.Row="8" Margin="5">בנק</Label>
-        <ComboBox Name="cmbCodeBank" Grid.Column="1" Grid.Row="8" MinWidth="250" Margin="5">
+        <Label Name="lblCodeBank" Grid.Column="0"  Grid.Row="9" Margin="3.5">בנק</Label>
+        <ComboBox Name="cmbCodeBank" Grid.Column="1" Grid.Row="9" MinWidth="250" Margin="3.5">
             <ComboBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"
@@ -140,8 +152,8 @@
                 </Binding>
             </ComboBox.Text>
         </ComboBox >
-        <Label Name="lblBankBranchNumber" Grid.Column="0"  Grid.Row="9" Margin="5">מס סניף</Label>
-        <TextBox Name="txtBankBranchNumber" Grid.Column="1" Grid.Row="9" MinWidth="250" Margin="5">
+        <Label Name="lblBankBranchNumber" Grid.Column="0"  Grid.Row="10" Margin="3.5">מס סניף</Label>
+        <TextBox Name="txtBankBranchNumber" Grid.Column="1" Grid.Row="10" MinWidth="250" Margin="3.5">
             <TextBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"
@@ -153,8 +165,8 @@
                 </Binding>
             </TextBox.Text>
         </TextBox >
-        <Label Name="lblBankAccountNumber" Grid.Column="0"  Grid.Row="10" Margin="5">מס חשבון</Label>
-        <TextBox Name="txtBankAccountNumber" Grid.Column="1" Grid.Row="10" MinWidth="250" Margin="5">
+        <Label Name="lblBankAccountNumber" Grid.Column="0"  Grid.Row="11" Margin="3.5">מס חשבון</Label>
+        <TextBox Name="txtBankAccountNumber" Grid.Column="1" Grid.Row="11" MinWidth="250" Margin="3.5">
             <TextBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"
@@ -166,8 +178,8 @@
                 </Binding>
             </TextBox.Text>
         </TextBox >
-        <Label Name="lblStartDate" Grid.Column="0"  Grid.Row="11" Margin="5">תאריך התחלה</Label>
-        <DatePicker Name="dpStartDate" Grid.Column="1" Grid.Row="11" MinWidth="250" Margin="5">
+        <Label Name="lblStartDate" Grid.Column="0"  Grid.Row="12" Margin="3.5">תאריך התחלה</Label>
+        <DatePicker Name="dpStartDate" Grid.Column="1" Grid.Row="12" MinWidth="250" Margin="3.5">
             <DatePicker.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"
@@ -179,8 +191,8 @@
                 </Binding>
             </DatePicker.Text>
         </DatePicker >
-        <Label Name="lblEndDate" Grid.Column="0"  Grid.Row="12" Margin="5">תאריך סיום</Label>
-        <DatePicker Name="dpEndDate" Grid.Column="1" Grid.Row="12" MinWidth="250" Margin="5">
+        <Label Name="lblEndDate" Grid.Column="0"  Grid.Row="13" Margin="3.5">תאריך סיום</Label>
+        <DatePicker Name="dpEndDate" Grid.Column="1" Grid.Row="13" MinWidth="250" Margin="3.5">
             <DatePicker.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"

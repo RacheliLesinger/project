@@ -69,6 +69,10 @@ namespace MasavBL.Models
         //מסמן האם הלקוח חדש - בפעם הראשונה שמפיקים לו דוח זה נכבה(False)
         public bool IsNew { get; set; }
 
+        [Range(0, 99, ErrorMessage = "הכנס מספר בין 1-99")]
+        [DisplayName("מחלקה")]
+        public int Class { get; set; }
+
 
        
         [DisplayName("בנק")]

@@ -32,8 +32,20 @@ namespace MasavBL.Models
         [DisplayName("הערות")]
         [DataType(DataType.Text)]
         public string Notes { get; set; }
+
+        [DisplayName("מחלקה")]
+        public int Class { get; set; }
+
+        [DisplayName("קוד סטטוס")]
+        public int StatusId { get; set; }
+
+
         [DisplayName("מוסד")]
         [ForeignKey("CustomerId")]
         public virtual Customer Customers { get; set; }
+
+        [ForeignKey("StatusId")]
+        [DisplayName("סטטוס")]
+        public virtual Status Status { get; set; }
     }
 }

@@ -13,34 +13,40 @@
 	</StackPanel>
 	</mui:ModernWindow.Content>
 	<mui:ModernWindow.MenuLinkGroups>
-        <mui:LinkGroup DisplayName="משלמים         " >
+        <mui:LinkGroup DisplayName="משלמים      " >
             <mui:LinkGroup.Links  >
                 <mui:Link  Source="/Pages/MainPage.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="לקוחות         " >
+        <mui:LinkGroup DisplayName="לקוחות      " >
             <mui:LinkGroup.Links  >
                 <mui:Link  Source="/Pages/CostumersPage.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
-        <mui:LinkGroup DisplayName="הכנת קבצי מסב         "  >
+        <mui:LinkGroup DisplayName="הכנת קבצי מסב      "  >
             <mui:LinkGroup.Links>
                 <mui:Link  Source="/Pages/CreateNewReports.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
 
-        <mui:LinkGroup DisplayName="דוחות         "  >
+        <mui:LinkGroup DisplayName="דוחות      "  >
             <mui:LinkGroup.Links>
                 <mui:Link  Source="/Pages/ReceiptsReport.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
 
-        <mui:LinkGroup DisplayName="עדכון היסטוריית שידורים         "  >
+        <mui:LinkGroup DisplayName="עדכון היסטוריית שידורים      "  >
             <mui:LinkGroup.Links>
                 <mui:Link  Source="/Pages/BroadcastPage.xaml" />
             </mui:LinkGroup.Links>
         </mui:LinkGroup>
 
+        <mui:LinkGroup DisplayName="היסטוריית תשלומים      "  >
+            <mui:LinkGroup.Links>
+                <mui:Link  Source="/Pages/PaymentsHistoryPage.xaml" />
+            </mui:LinkGroup.Links>
+        </mui:LinkGroup>
+        
         <mui:LinkGroup DisplayName="טעינת משלמים"  >
             <mui:LinkGroup.Links>
                 <mui:Link  Source="/Pages/ImportDateFromExcel.xaml" />

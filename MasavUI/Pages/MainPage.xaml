@@ -31,10 +31,15 @@
 
 					<StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0">
 						<TextBlock Text="בחר לקוח" Margin="20,30,10,30" DockPanel.Dock="Left" />
-                        <ComboBox Name="cmbCustomers" Margin="0,30,50,30" DockPanel.Dock="Left" >
+                        <ComboBox Name="cmbCustomers" Margin="0,30,50,30" DockPanel.Dock="Left" SelectionChanged="CmbCustomers_SelectionChanged" >
                         </ComboBox >
 					</StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0">
+                        <TextBlock Text="בחר מחלקה" Margin="20,30,10,30" DockPanel.Dock="Left" />
+                        <ComboBox Name="cmbClasses" Margin="0,30,50,30" DockPanel.Dock="Left" >
+                        </ComboBox >
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0" Margin="0">
                         <TextBlock Text="סטטוס" Margin="20,30,10,30"  DockPanel.Dock="Left"/>
                         <ComboBox Name="cmbActivity"  Margin="0,30,50,30" DockPanel.Dock="Left" >
                         </ComboBox>
@@ -78,6 +83,7 @@
                     <DataGridTextColumn Header="מס' חשבון" Binding="{Binding BankAccountNumber}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="תאריך התחלה" Binding="{Binding StartDate , StringFormat=\{0:dd.MM.yy\}}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="תאריך סיום" Binding="{Binding EndDate , StringFormat=\{0:dd.MM.yy\}}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="מחלקה" Binding="{Binding Class}" IsReadOnly="True"/>
                 </DataGrid.Columns>
 
 			</DataGrid>

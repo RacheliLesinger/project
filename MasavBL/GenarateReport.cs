@@ -14,7 +14,8 @@ namespace MasavBL
     {
         private static readonly ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public static async Task<GenerateReportRes> GenerateReport(string year, string month, int dayInMonth, int customerId, bool overrideFile)
+        public static async Task<GenerateReportRes> GenerateReport(string year, string month, int dayInMonth,
+            int customerId, int payingClass, bool overrideFile, bool isOverride)
         {
             var date = DateTime.Now;
             var chiyuvDate = new DateTime(Int32.Parse(year), Int32.Parse(month), dayInMonth);
@@ -24,10 +25,11 @@ namespace MasavBL
             FileInfo info = new FileInfo(filePath + fileName);
             if (info.Exists && overrideFile != true)
                 return new GenerateReportRes(string.Empty, false, "File already Exsist");
-            if (CreateMasavReport(filePath + fileName, dayInMonth, chiyuvDate,customerId, Int32.Parse(year), Int32.Parse(month)))
+            if (CreateMasavReport(filePath + fileName, dayInMonth, chiyuvDate,customerId, Int32.Parse(year), Int32.Parse(month), payingClass))
             {
+                
                 //יצירת רשומות בטבלת היסטורית תשלומים
-                var phRes = await DB.AddPaymentHistory(dayInMonth, customerId, Int32.Parse(year), Int32.Parse(month));
+                var phRes = await DB.AddPaymentHistory(dayInMonth, customerId,payingClass, Int32.Parse(year), Int32.Parse(month), isOverride);
                 //יצירת הרשומה בטבלת היסטורית שידורים
                 if (phRes.AmountSum != 0)
                 {
@@ -108,7 +110,7 @@ namespace MasavBL
 
         }
 
-        public static bool CreateMasavReport(string filePath, int dayInMonth, DateTime chiyuvDate, int customerId, int year, int month)
+        public static bool CreateMasavReport(string filePath, int dayInMonth, DateTime chiyuvDate, int customerId, int year, int month, int payingClass)
         {
             try
             {
@@ -118,7 +120,7 @@ namespace MasavBL
                     var customerCode = DB.GetCustomerCode(customerId);
                     var institution = DB.GetInstitutionByCustomerId(customerId);
                     writer.WriteLine(GetKOT(chiyuvDate, customerCode, institution));
-                    var list = DB.GetPayingsToReport(dayInMonth, customerId, year, month);
+                    var list = DB.GetPayingsToReport(dayInMonth, customerId, year, month, payingClass);
                     list.ForEach( i =>
                     {
                         if (i.CodeBank?.Code.Length == 1)

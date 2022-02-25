@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MasavUI.Pages.BroadcastPage"
+﻿<UserControl x:Class="MasavUI.Pages.PaymentsHistoryPage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -33,14 +33,10 @@
                         <ComboBox Name="cmbCustomers" Margin="0,30,50,30" DockPanel.Dock="Left" >
                         </ComboBox >
                     </StackPanel>
-
                     <Button Name="btnFilter" Content="סנן"  Margin="30" DockPanel.Dock="Right" Grid.Row="0" Grid.Column="2" Click="btnFilter_Click" Background="#FFDFE0EA" FontWeight="Bold"/>
                 </Grid>
             </Border>
-            <StackPanel Orientation="Horizontal" Margin="10"  Grid.Column="1" Grid.ColumnSpan="2" FlowDirection="LeftToRight">
-                <Button Name="btnEditCostumer" Content="עריכה"  Click="btnEditBroadcast_Click" Margin="10,10,10,10" DockPanel.Dock="Right" IsEnabled="True" Background="#FF9CB2DA"  FontWeight="Bold" BorderBrush="#FF211D1D"/>
-                
-            </StackPanel>
+            
         </Grid>
         
         <Grid Margin="10" Grid.Row="1">
@@ -51,20 +47,15 @@
 				<RowDefinition Height="*" />
 			</Grid.RowDefinitions>
 			<DataGrid Name="dgReports"  Grid.Column="0"  Grid.Row="0" AutoGenerateColumns="False"  
-                      SelectionChanged="dgReports_SelectionChanged"
-                      CanUserAddRows="False"  CanUserDeleteRows="False" 
+                          CanUserAddRows="False"  CanUserDeleteRows="False" 
 						  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" CanUserResizeRows="False" CanUserSortColumns="True">
                 <DataGrid.Columns >
-                    <DataGridTextColumn Header="שם המוסד" Binding="{Binding Customers.Name}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="תאריך שידור" Binding="{Binding BroadcastDate}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="תאריך ערך" Binding="{Binding ValueDate}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="סכום שידור" Binding="{Binding BroadcastAmount}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="כמות רשומות" Binding="{Binding SumRecords}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="כמות חדשים" Binding="{Binding SumNewRecords}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="אסמכתת שידור" Binding="{Binding BroadcastReference}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="הערות" Binding="{Binding Notes}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="סטטוס" Binding="{Binding Status.Name}" IsReadOnly="True"/>
-                </DataGrid.Columns>
+                    <DataGridTextColumn Header="שם הלקוח" Binding="{Binding Customers.Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="שם המשלם" Binding="{Binding Paying.Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="ת.ז." Binding="{Binding Paying.IdentityNumber}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="תאריך תשלום" Binding="{Binding PaymentDate}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="סכום תשלום" Binding="{Binding PaymentAmount}" IsReadOnly="True"/>
+              </DataGrid.Columns>
 
 			</DataGrid>
 		</Grid>

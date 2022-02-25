@@ -22,6 +22,7 @@ namespace MasavUI.Pages
         {
             InitializeComponent();
 
+            //initialize comboBox
             cmbYear.ItemsSource = GetYears();
             cmbYear.SelectedItem = DateTime.Now.Year;
 
@@ -34,7 +35,11 @@ namespace MasavUI.Pages
             cmbDayInMonth.ItemsSource = dayInMonthList;
             cmbDayInMonth.SelectedIndex = 0;
 
-            //initialize comboBox
+            var classList = new List<int>();
+            classList.AddRange(Enumerable.Range(0, 99).ToArray());
+            cmbClass.ItemsSource = classList;
+            cmbClass.SelectedIndex = 0;
+
             var customersList = new List<Customer>();
             customersList.AddRange(DB.GetCustomersList());
             cmbCustomers.DisplayMemberPath = "Name";
@@ -78,7 +83,7 @@ namespace MasavUI.Pages
                 {
                     res = await PdfReport.GenerateBroadcastReport((int)cmbYear.SelectedValue,
                         (int)cmbMonthly.SelectedValue, (int)cmbDayInMonth.SelectedValue,
-                                            (int)cmbCustomers.SelectedValue, OverrideFile);
+                                            (int)cmbCustomers.SelectedValue, (int)cmbClass.SelectedValue, OverrideFile);
                 }
                 if (res.Success && res.FilePath != string.Empty)
                 {
@@ -163,7 +168,7 @@ namespace MasavUI.Pages
 
         private void CmbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            cmbDayInMonth.SelectedItem = ((Customer)cmbCustomers.SelectedItem).PaymentDate1;
+            cmbDayInMonth.SelectedItem = ((Customer)cmbCustomers.SelectedItem)?.PaymentDate1;
         }
     }
 }

@@ -54,6 +54,11 @@ namespace MasavUI.Pages
             cmbDayInMonth.ItemsSource = dayInMonthList;
             cmbDayInMonth.SelectedIndex = 0;
 
+            var classList = new List<int>();
+            classList.AddRange(Enumerable.Range(0, 99).ToArray());
+            cmbClass.ItemsSource = classList;
+            cmbClass.SelectedIndex = 0;
+
             var customersList = new List<Customer>();
             customersList.AddRange(DB.GetCustomersList());
             cmbCustomers.DisplayMemberPath = "Name";
@@ -91,7 +96,8 @@ namespace MasavUI.Pages
             mpbWaiting.Visibility = Visibility.Visible;
 
             var res = await GenarateReport.GenerateReport(cmbYear.SelectedValue.ToString(), cmbMonthly.SelectedValue.ToString()
-                                                 ,(int)cmbDayInMonth.SelectedValue, (int)cmbCustomers.SelectedValue,OverrideFile);
+                                                 ,(int)cmbDayInMonth.SelectedValue, (int)cmbCustomers.SelectedValue
+                                                 ,(int)cmbClass.SelectedValue,OverrideFile, (bool)cbIsOverride.IsChecked);
             if (res.Success && res.FilePath != string.Empty)
             {
                 tbProgressSuccess.Text = "התהליך הסתיים בהצלחה," + System.Environment.NewLine + "נוצר דוח חדש  " + 
@@ -101,7 +107,7 @@ namespace MasavUI.Pages
                 mpbWaiting.Visibility = Visibility.Collapsed;
                 var res1 = await PdfReport.GenerateBroadcastReport((int)cmbYear.SelectedValue,
                        (int)cmbMonthly.SelectedValue, (int)cmbDayInMonth.SelectedValue,
-                                           (int)cmbCustomers.SelectedValue, OverrideFile);
+                                           (int)cmbCustomers.SelectedValue,(int)cmbClass.SelectedValue, OverrideFile);
             }
             else
             {

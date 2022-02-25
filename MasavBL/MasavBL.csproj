@@ -105,6 +105,7 @@
     <Compile Include="Models\Institution.cs" />
     <Compile Include="Models\Paying.cs" />
     <Compile Include="Models\PaymentHistory.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="PdfConvert.cs" />
     <Compile Include="PdfReport.cs" />

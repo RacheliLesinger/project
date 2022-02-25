@@ -69,11 +69,13 @@ namespace MasavBL
         //}
 
 
-        public static async Task<GenerateReportRes> GenerateBroadcastReport(int year, int month,int dayInMonth, int customerId, bool overrideFile)
+        public static async Task<GenerateReportRes> GenerateBroadcastReport(int year, int month,int dayInMonth,
+            int customerId,int payingClass, bool overrideFile)
         {
             var date = DateTime.Now;
-
+            var pClass = payingClass == 0 ? "" : " " + payingClass;
             var fileName = customerId + "_" + date.ToString("yyMMdd") + ".pdf";
+           
             string filePath = Properties.Settings.Default.PdfReportPath + "\\" + year + "\\" + month + "\\";
 
             //string filePath = Properties.Settings.Default.PdfReportPath;
@@ -82,11 +84,12 @@ namespace MasavBL
             if (info.Exists && overrideFile != true)
                 return new GenerateReportRes(string.Empty, false, "File already Exsist");
 
-            var list = DB.GetPayingsToReport(dayInMonth, customerId, year,month);
+            var list = DB.GetPayingsToReport(dayInMonth, customerId, year,month,payingClass);
             var customer = DB.GetCustomerName(customerId);
 
-            var repPath = CreatePdf(list,customer, filePath + "\\" + fileName);
-            var newFileName = filePath + "\\" + customer + " " + date.ToString("yyMMdd") + ".pdf";
+            var dt = new DateTime(year, month, dayInMonth);
+            var repPath = CreatePdf(list,customer, filePath + "\\" + fileName, dt);
+            var newFileName = filePath + "\\" + customer + pClass + " " + date.ToString("yyMMdd") + ".pdf";
             if (File.Exists(newFileName))
             {
                 File.Delete(newFileName);
@@ -95,7 +98,7 @@ namespace MasavBL
             return new GenerateReportRes(newFileName, true, string.Empty);
         }
 
-        public static string CreatePdf(List<Paying> list, string customer ,string filePath)
+        public static string CreatePdf(List<Paying> list, string customer ,string filePath, DateTime reportDate)
         {
             foreach (var item in list)
                 item.IsNew = DB.IsNewPaying(item);
@@ -103,9 +106,9 @@ namespace MasavBL
             var htmlData = File.ReadAllText(Environment.CurrentDirectory + "..\\..\\..\\..\\MasavBL\\‏‏HTMLbroadcastReportNew.html");
             var htmlPath = Path.Combine(Properties.Settings.Default.PdfReportPath, "ReplayMessage.html");
             htmlData = htmlData.Replace("customer_name", customer);
-            htmlData = htmlData.Replace("madad", "");
-            htmlData = htmlData.Replace("dolar", "");
-            htmlData = htmlData.Replace("report_date", DateTime.Now.ToShortDateString());
+            htmlData = htmlData.Replace("madad", "     ");
+            htmlData = htmlData.Replace("dolar", "     ");
+            htmlData = htmlData.Replace("report_date", reportDate.ToShortDateString());
             htmlData = htmlData.Replace(@"<tr><td>addRow</td></tr>", InsertRows(list));
             htmlData = htmlData.Replace("sum_record", InsertSumRecord(list));
             htmlData = htmlData.Replace("sum_amount", list.Sum(i => i.Amount).Value.ToString());
@@ -115,9 +118,9 @@ namespace MasavBL
             {
                 Url = htmlPath,
                 //HeaderRight = "מעלה אדומים משופר",
-                //HeaderLeft = "[date]",
-                //FooterCenter = "עמוד [page] מתוך [topage]",
-                //HeaderFontSize = "10"
+                HeaderLeft = "[date] ",
+                FooterCenter = " [page] ", //- [topage]",
+                HeaderFontSize = "8"
 
             }, new PdfOutput
             {
