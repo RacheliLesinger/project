@@ -52,7 +52,7 @@ namespace MasavBL.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Report")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Report")]
         public string ReportPath {
             get {
                 return ((string)(this["ReportPath"]));
@@ -61,7 +61,7 @@ namespace MasavBL.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\PdfReport")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\PdfReport")]
         public string PdfReportPath {
             get {
                 return ((string)(this["PdfReportPath"]));

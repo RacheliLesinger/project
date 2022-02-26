@@ -169,6 +169,8 @@ namespace MasavUI.Pages
             var customerId = (int)cmbCustomers.SelectedValue;
             classList.AddRange(DB.GetClassesToCustomer(customerId));
 
+            if (classList.Count == 0)
+                classList.Add(0);
             cmbClass.ItemsSource = classList;
             cmbClass.SelectedIndex = 0;
         }
