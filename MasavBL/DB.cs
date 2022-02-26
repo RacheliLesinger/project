@@ -24,8 +24,8 @@ namespace MasavBL
     }
     public class DB
     {
-        private static readonly ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
+        //private static readonly ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public static List<Paying> GetPayings(int customerId= 0, int activityId = 0, int classId =0)
         {
             using(var ctx = new MasavContext())
@@ -374,7 +374,7 @@ namespace MasavBL
                     {
                         var latestBroadcast = customerBroadcast.First();
                         //להפוך לבוטל את התשלומים שבוצעו
-                        var lastPayments = ctx.PaymentHistories.Where(p => p.CustomerId == customerId
+                        var lastPayments = ctx.PaymentHistories.ToList().Where(p => p.CustomerId == customerId
                                                             && p.StatusId == (int)EnumStatus.Active
                                                             && p.PaymentDate.Value.Date == latestBroadcast.BroadcastDate.Value.Date);
                         foreach (var paymentHistory in lastPayments)
@@ -387,6 +387,7 @@ namespace MasavBL
                         //להפוך לבוטל את ההיסטוריית שידור
                         latestBroadcast.StatusId = (int)EnumStatus.InActive;
                         ctx.BroadcastHistories.AddOrUpdate(latestBroadcast);
+                        await ctx.SaveChangesAsync();
                     }
                 }
             }

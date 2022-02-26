@@ -165,6 +165,12 @@ namespace MasavUI.Pages
         private void CmbCustomers_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             cmbDayInMonth.SelectedItem = ((Customer)cmbCustomers.SelectedItem).PaymentDate1;
+            var classList = new List<int>();
+            var customerId = (int)cmbCustomers.SelectedValue;
+            classList.AddRange(DB.GetClassesToCustomer(customerId));
+
+            cmbClass.ItemsSource = classList;
+            cmbClass.SelectedIndex = 0;
         }
     }
 }
