@@ -47,6 +47,26 @@ namespace MasavBL
             }
         }
 
+        public static List<Paying> GetPayingsAllClasses(int customerId = 0, int activityId = 0)
+        {
+            using (var ctx = new MasavContext())
+            {
+                var list = ctx.Payings.AsNoTracking()
+                    .Include("CodeBank")
+                    .Include("Currency")
+                    .Include("Customers")
+                    .Include("Activity")
+                    .Include("PaymentHistory")
+                    .Where(i => (i.CustomerId == customerId || customerId == 0) &&
+                                                  (i.ActivityId == activityId || activityId == 0))
+                    .OrderBy(i => i.Customers.Name)
+                    .ThenBy(i => i.Name)
+                    .ToList();
+
+                return list;
+            }
+        }
+
         public static bool UpdatePayings(Paying paying)
         {
             try
@@ -101,7 +121,7 @@ namespace MasavBL
             }
         }
 
-        public static async Task<bool> AddBrodcastHistory(double amount, int customerId,int payingClass, int sumRecord, int sumNewRecords = 0)
+        public static async Task<bool> AddBrodcastHistory(DateTime dt, double amount, int customerId,int payingClass, int sumRecord, int sumNewRecords = 0)
         {
             try
             {
@@ -114,7 +134,7 @@ namespace MasavBL
                         CustomerId = customerId,
                         SumRecords = sumRecord,
                         SumNewRecords = sumNewRecords,
-                        ValueDate = DateTime.Now,
+                        ValueDate = dt.Date,
                         Class = payingClass,
                         StatusId = (int)EnumStatus.Active,
                     };

@@ -15,7 +15,7 @@ namespace MasavBL
     {
         public static GenerateReportRes ExportToExcel(List<Paying> usersList)
         {
-            var list = DB.GetPayings();
+           // var list = DB.GetPayings();
             var res = new GenerateReportRes(string.Empty, false, "");
             try
             {
@@ -65,7 +65,7 @@ namespace MasavBL
             var res = new GenerateReportRes(string.Empty, false, "");
             try
             {
-                var exsistingPayings = DB.GetPayings(customer.Id);
+                var exsistingPayings = DB.GetPayingsAllClasses(customer.Id);
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using (var package = new ExcelPackage(stream))
                 {
@@ -78,7 +78,7 @@ namespace MasavBL
                         for (; r <= rowCount; r++)
                             if (worksheet.Cells[r, 1].Value?.ToString().Trim() == "$$")
                                 break;
-                        if (r != rowCount)
+                        if (r != (rowCount +1))
                             row = r+1;
                         for (; row <= rowCount; row++)
                         {
@@ -97,6 +97,8 @@ namespace MasavBL
                             p.BankAccountNumber = worksheet.Cells[row, 5].Value?.ToString();
                             p.BankAccountNumber = GetNumbers(p.BankAccountNumber);
                             p.Amount = Double.Parse(worksheet.Cells[row, 6].Value?.ToString());
+                            var isClass = Int32.TryParse(worksheet.Cells[row, 7].Value?.ToString(), out int c);
+                            p.Class = isClass == true ? c : 0;
                             p.ActivityId = 1; //פעיל
 
                             if (exsist == null)//משלם חדש - הגדרות ברירת מחדל
