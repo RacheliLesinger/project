@@ -91,7 +91,10 @@ namespace MasavUI.Pages
             var customerId = (int)cmbCustomers.SelectedValue;
             var activityId = (int)cmbActivity.SelectedValue;
             var classId = (int)cmbClasses.SelectedValue;
-            payings = DB.GetPayings(customerId, activityId,classId);
+            if (classId == 0)
+                payings = DB.GetPayingsAllClasses(customerId, activityId);
+            else payings = DB.GetPayings(customerId, activityId,classId);
+
             dgReports.ItemsSource = payings;
             dgReports.Items.Refresh();
 
@@ -253,9 +256,10 @@ namespace MasavUI.Pages
         {
             var classList = new List<int>();
             var customerId = (int)cmbCustomers.SelectedValue;
+            classList.Add(0);
             classList.AddRange(DB.GetClassesToCustomer(customerId));
-            if (classList.Count == 0)
-                classList.Add(0);
+            //if (classList.Count == 0)
+              
             cmbClasses.ItemsSource = classList;
             cmbClasses.SelectedIndex = 0;
         }

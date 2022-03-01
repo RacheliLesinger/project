@@ -167,10 +167,11 @@ namespace MasavUI.Pages
             cmbDayInMonth.SelectedItem = ((Customer)cmbCustomers.SelectedItem).PaymentDate1;
             var classList = new List<int>();
             var customerId = (int)cmbCustomers.SelectedValue;
+            classList.Add(0);
             classList.AddRange(DB.GetClassesToCustomer(customerId));
 
-            if (classList.Count == 0)
-                classList.Add(0);
+           // if (classList.Count == 0)
+               
             cmbClass.ItemsSource = classList;
             cmbClass.SelectedIndex = 0;
         }

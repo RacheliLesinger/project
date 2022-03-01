@@ -95,6 +95,8 @@ namespace MasavBL
                 newCustomerName = newCustomerName.Substring(0, 16);
             string amountStr = string.Format("{0:N2}", amount).Replace(".", "").Replace(",","");
             string mosadIdentity = payingIdentityNumber; // מס מזהה ללקוח במוסד 
+            if (mosadIdentity.Length > 9)
+                mosadIdentity = mosadIdentity.Substring(0, 9);
             string tkufatChiyuv = "00000000"; // תקופת חיוב
             string sugTnua = "504"; // סוג תנועה - 504
 

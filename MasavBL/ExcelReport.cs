@@ -89,7 +89,15 @@ namespace MasavBL
                             var p = new Paying();
                             if (exsist != null)
                                 p = exsist;
-                            p.IdentityNumber = worksheet.Cells[row, 1].Value?.ToString();
+                            var identity = worksheet.Cells[row, 1].Value?.ToString();
+                            if (identity.Length > 9)
+                            {
+                                res.ErrorMessage = "קימת בעיה בשורה מספר " + row + " ";
+                                if (p.CodeBankId == 0)
+                                    res.ErrorMessage += " תעודת זהות לא תקינה";
+                                return res;
+                            }
+                            p.IdentityNumber = identity;
                             p.Name = worksheet.Cells[row, 2].Value?.ToString();
                             p.CodeBankId = DB.GetBankIdByCode(worksheet.Cells[row, 3].Value?.ToString());
                             p.BankBranchNumber = worksheet.Cells[row, 4].Value?.ToString();
