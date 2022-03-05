@@ -89,6 +89,7 @@ namespace MasavBL
         {
             // רשומת תנועה
             string mosad = customerCode; // Properties.Settings.Default.Mosad;
+
             string sugCheshbon = "0000"; // סוג חשבון
             string newCustomerName = ConversionTable.ConvertFromHebrew(customerName); //"DXETV ODK"; 
             if (newCustomerName.Length > 16)
@@ -121,6 +122,8 @@ namespace MasavBL
                 using (StreamWriter writer = info.CreateText())
                 {
                     var customerCode = DB.GetCustomerCode(customerId);
+                    if (customerCode.Length < 8)
+                        customerCode = customerCode.PadLeft(8, '0');
                     var institution = DB.GetInstitutionByCustomerId(customerId);
                     writer.WriteLine(GetKOT(chiyuvDate, customerCode, institution));
                     var list = DB.GetPayingsToReport(dayInMonth, customerId, year, month, payingClass);
