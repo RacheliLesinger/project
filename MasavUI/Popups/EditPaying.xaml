@@ -141,6 +141,20 @@
         </TextBox >
         <Label Name="lblCodeBank" Grid.Column="0"  Grid.Row="9" Margin="3.5">בנק</Label>
         <ComboBox Name="cmbCodeBank" Grid.Column="1" Grid.Row="9" MinWidth="250" Margin="3.5">
+
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} - {1}">
+                                <Binding Path="Code"/>
+                                <Binding Path="Name"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+
             <ComboBox.Text>
                 <Binding RelativeSource="{RelativeSource Self}" Path="Text" UpdateSourceTrigger="LostFocus" 
                  ValidatesOnNotifyDataErrors="True"

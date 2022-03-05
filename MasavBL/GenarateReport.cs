@@ -17,7 +17,7 @@ namespace MasavBL
         public static async Task<GenerateReportRes> GenerateReport(string year, string month, int dayInMonth,
             int customerId, int payingClass, bool overrideFile, bool isOverride)
         {
-            log.Error($"CreateMasavReport, customerId: {customerId} ");
+            log.Info($"CreateMasavReport, customerId: {customerId} ");
 
             var chiyuvDate = new DateTime(Int32.Parse(year), Int32.Parse(month), dayInMonth);
             var fileName = DB.GetCustomerCode(customerId) + ".txt";

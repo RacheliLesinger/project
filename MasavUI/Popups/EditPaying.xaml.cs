@@ -39,7 +39,7 @@ namespace MasavUI.Popups
 
                 var banksList = new List<CodeBank>();
                 banksList.AddRange(DB.GetBanksList());
-                cmbCodeBank.DisplayMemberPath = "Name";
+                //cmbCodeBank.DisplayMemberPath = "Name";
                 cmbCodeBank.SelectedValuePath = "Id";
                 cmbCodeBank.ItemsSource = banksList;
 
