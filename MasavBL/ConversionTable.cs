@@ -46,7 +46,7 @@ namespace MasavBL
 
         public static char ConvertFromEnglish(char key)
         {
-            var r = keyValuePairs.Find(i => i.Value == key);
+            var r = keyValuePairs.Find(i => i.Key == key);
             return r.Key == 0 ? key : r.Value;
         }
 

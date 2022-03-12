@@ -46,14 +46,16 @@ namespace MasavBL
             return new GenerateReportRes(string.Empty, false, "CreateMasavReport fail");
         }
 
-        public static string GetKOT(DateTime chiyuvDate,string customerCode, Models.Institution institution)
+        public static string GetKOT(DateTime chiyuvDate,string customerCode,string customerName, Models.Institution institution)
         {
             // כותרת
             var createdDate = DateTime.Now.ToString("yyMMdd");
             string mosad = customerCode; //Properties.Settings.Default.Mosad; // "09376013";
             string chiyuvDateStr = chiyuvDate.ToString("yyMMdd"); //תאריך חיוב 
             string mosadSholeach = institution.Code; //Properties.Settings.Default.MosadNum; // "00004"; //מוסד שולח    
-            string mosadName = ConversionTable.ConvertFromHebrew(institution.Name); //Properties.Settings.Default.ShemMosad;// "D&TD OELQ - DXEAC OIXTLD"; // שם מוסד  
+            string mosadName = ConversionTable.ConvertFromHebrew(customerName.ReverseString()); //Properties.Settings.Default.ShemMosad;// "D&TD OELQ - DXEAC OIXTLD"; // שם מוסד  
+
+            string tt = ConversionTable.ConvertFromEnglish(mosadName);
 
             string KOT = "K" + mosad + "00" + chiyuvDateStr + "0" + "001" + "0" + createdDate + mosadSholeach + "000000" + mosadName.PadLeft(30, ' ') + "KOT".PadLeft(59, ' ');
             if (KOT.Length == 128)
@@ -90,7 +92,7 @@ namespace MasavBL
             // רשומת תנועה
             string mosad = customerCode; // Properties.Settings.Default.Mosad;
             string sugCheshbon = "0000"; // סוג חשבון
-            string newCustomerName = ConversionTable.ConvertFromHebrew(customerName); //"DXETV ODK"; 
+            string newCustomerName = ConversionTable.ConvertFromHebrew(customerName.ReverseString()); //"DXETV ODK"; 
             if (newCustomerName.Length > 16)
                 newCustomerName = newCustomerName.Substring(0, 16);
             string amountStr = string.Format("{0:N2}", amount).Replace(".", "").Replace(",","");
@@ -121,8 +123,9 @@ namespace MasavBL
                 using (StreamWriter writer = info.CreateText())
                 {
                     var customerCode = DB.GetCustomerCode(customerId);
+                    var customerName = DB.GetCustomerName(customerId);
                     var institution = DB.GetInstitutionByCustomerId(customerId);
-                    writer.WriteLine(GetKOT(chiyuvDate, customerCode, institution));
+                    writer.WriteLine(GetKOT(chiyuvDate, customerCode,customerName, institution));
                     var list = DB.GetPayingsToReport(dayInMonth, customerId, year, month, payingClass);
                     list.ForEach( i =>
                     {
