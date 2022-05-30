@@ -473,14 +473,20 @@ namespace MasavBL
         }
 
 
-        public static List<BroadcastHistory> GetBroadcastHistoryList(int customerId = 0)
+        public static List<BroadcastHistory> GetBroadcastHistoryList(int customerId = 0, DateTime? fromDate = null, DateTime? toDate = null)
         {
             using (var ctx = new MasavContext())
             {
+                if (fromDate != null)
+                    fromDate = fromDate.Value.AddDays(-1);
+               if (toDate != null)
+                    toDate = toDate.Value.AddDays(1);
                 var list = ctx.BroadcastHistories.AsNoTracking()
                     .Include("Customers")
                     .Include("Status")
-                    .Where(i => (i.CustomerId == customerId || customerId == 0))
+                    .Where(i => (i.CustomerId == customerId || customerId == 0)
+                             && (i.BroadcastDate >= fromDate|| fromDate == null)
+                             && (i.BroadcastDate <= toDate || toDate == null))
                     .ToList();
                 return list;
             }
@@ -550,15 +556,22 @@ namespace MasavBL
             }
         }
 
-        public static List<PaymentHistory> GetPaymentHistory(int customerId = 0)
+        public static List<PaymentHistory> GetPaymentHistory(int customerId = 0, DateTime? fromDate = null, DateTime? toDate =null)
         {
             using (var ctx = new MasavContext())
             {
+                if (fromDate != null)
+                    fromDate = fromDate.Value.AddDays(-1);
+                if (toDate != null)
+                    toDate = toDate.Value.AddDays(1);
                 var list = ctx.PaymentHistories
                     .Include("Paying")
                     .Include("Customers")
                     .AsNoTracking()
-                    .Where(p => (p.CustomerId == customerId ||customerId == 0) && p.StatusId == (int)EnumStatus.Active)
+                    .Where(p => (p.CustomerId == customerId ||customerId == 0)
+                                && (p.PaymentDate >= fromDate || fromDate == null)
+                                && (p.PaymentDate <= toDate || toDate == null)
+                                && p.StatusId == (int)EnumStatus.Active)
                     .OrderByDescending(p => p.PaymentDate)
                     .ToList();
                 foreach (var item in list)

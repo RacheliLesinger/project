@@ -12,7 +12,7 @@ namespace MasavBL.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -52,7 +52,7 @@ namespace MasavBL.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\Report")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Report")]
         public string ReportPath {
             get {
                 return ((string)(this["ReportPath"]));
@@ -61,7 +61,7 @@ namespace MasavBL.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\PdfReport")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\PdfReport")]
         public string PdfReportPath {
             get {
                 return ((string)(this["PdfReportPath"]));
@@ -70,7 +70,7 @@ namespace MasavBL.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\ExcelFiles")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\ExcelFiles")]
         public string ExcelReportPath {
             get {
                 return ((string)(this["ExcelReportPath"]));
