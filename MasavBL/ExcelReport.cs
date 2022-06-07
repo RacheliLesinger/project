@@ -80,6 +80,24 @@ namespace MasavBL
                                 break;
                         if (r != (rowCount +1))
                             row = r+1;
+                        // בדיקה שלא מופיע באקסל אותו תז 2 פעמים, ב2 שורות
+                        var listT = new List<string>();
+                        for(var rowT = row;  rowT <= rowCount; rowT++)
+                        {
+                            var identityNumber = worksheet.Cells[rowT, 1].Value?.ToString();
+                            if (identityNumber == string.Empty || identityNumber == null)
+                                break;
+                            if (!listT.Contains(identityNumber))
+                            {
+                                listT.Add(identityNumber);
+                            }
+                            else
+                            {
+                                res.ErrorMessage = "קימת בעיה בקובץ בשורה " + rowT + ", ";
+                                res.ErrorMessage += "מספר זהות " + identityNumber + " כבר מופיע לפני כן בקובץ";
+                                return res;
+                            }
+                        }
                         for (; row <= rowCount; row++)
                         {
                             var identityNumber = worksheet.Cells[row, 1].Value?.ToString();
@@ -104,6 +122,12 @@ namespace MasavBL
                             p.BankBranchNumber = GetNumbers(p.BankBranchNumber);
                             p.BankAccountNumber = worksheet.Cells[row, 5].Value?.ToString();
                             p.BankAccountNumber = GetNumbers(p.BankAccountNumber);
+                            if(p.BankAccountNumber.Length > 9)
+                            {
+                                res.ErrorMessage = "קימת בעיה בשורה מספר " + row + " .";
+                                res.ErrorMessage += " מספר חשבון בנק לא תקין, גדול מ9 ספרות";
+                                return res;
+                            }
                             p.Amount = Double.Parse(worksheet.Cells[row, 6].Value?.ToString());
                             var isClass = Int32.TryParse(worksheet.Cells[row, 7].Value?.ToString(), out int c);
                             p.Class = isClass == true ? c : 0;

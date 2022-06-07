@@ -53,7 +53,9 @@ namespace MasavUI.Pages
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
             var customerId = (int)cmbCustomers.SelectedValue;
-            payments = DB.GetPaymentHistory(customerId);
+            var fromDate = dpFromDate.SelectedDate;
+            var toDate = dpToDate.SelectedDate;
+            payments = DB.GetPaymentHistory(customerId, fromDate, toDate);
             dgReports.ItemsSource = payments;
             dgReports.Items.Refresh();
         }

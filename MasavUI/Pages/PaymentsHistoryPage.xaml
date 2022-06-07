@@ -22,6 +22,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -29,11 +30,21 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Margin="0">
-                        <TextBlock Text="מוסד" Margin="30" DockPanel.Dock="Left" />
+                        <TextBlock Text="מוסד" Margin="10,30,10,30" DockPanel.Dock="Left" />
                         <ComboBox Name="cmbCustomers" Margin="0,30,50,30" DockPanel.Dock="Left" >
                         </ComboBox >
                     </StackPanel>
-                    <Button Name="btnFilter" Content="סנן"  Margin="30" DockPanel.Dock="Right" Grid.Row="0" Grid.Column="2" Click="btnFilter_Click" Background="#FFDFE0EA" FontWeight="Bold"/>
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Margin="0">
+                        <TextBlock Text="מתאריך" Margin="10,30,10,30" DockPanel.Dock="Left" />
+                        <DatePicker Name="dpFromDate" Margin="0,30,0,30" DockPanel.Dock="Left" >
+                        </DatePicker>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0" Margin="0">
+                        <TextBlock Text=" עד תאריך" Margin="10,30,10,30" DockPanel.Dock="Left" />
+                        <DatePicker Name="dpToDate" Margin="0,30,0,30" DockPanel.Dock="Left" >
+                        </DatePicker>
+                    </StackPanel>
+                    <Button Name="btnFilter" Content="סנן"  Margin="25" DockPanel.Dock="Right" Grid.Row="0" Grid.Column="3" Click="btnFilter_Click" Background="#FFDFE0EA" FontWeight="Bold"/>
                 </Grid>
             </Border>
             
@@ -53,7 +64,7 @@
                     <DataGridTextColumn Header="שם הלקוח" Binding="{Binding Customers.Name}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="שם המשלם" Binding="{Binding Paying.Name}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="ת.ז." Binding="{Binding Paying.IdentityNumber}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="תאריך תשלום" Binding="{Binding PaymentDate}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="תאריך תשלום" Binding="{Binding PaymentDate, StringFormat=\{0:dd/MM/yy \}}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="סכום תשלום" Binding="{Binding PaymentAmount}" IsReadOnly="True"/>
               </DataGrid.Columns>
 

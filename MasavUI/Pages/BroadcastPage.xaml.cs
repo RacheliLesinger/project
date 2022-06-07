@@ -55,7 +55,9 @@ namespace MasavUI.Pages
         private void btnFilter_Click(object sender, RoutedEventArgs e)
         {
             var customerId = (int)cmbCustomers.SelectedValue;
-            broadcasts = DB.GetBroadcastHistoryList(customerId);
+            var fromDate = dpFromDate.SelectedDate;
+            var toDate = dpToDate.SelectedDate;
+            broadcasts = DB.GetBroadcastHistoryList(customerId,fromDate, toDate);
             dgReports.ItemsSource = broadcasts;
             dgReports.Items.Refresh();
         }
